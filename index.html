@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorldGate — Immigration Afrique → Turquie</title>
+  <meta name="description" content="WorldGate - Spécialiste immigration Afrique vers Turquie. Visa tourisme, travail, études, familial. 95% de réussite. 1,200+ Africains aidés." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-router-dom@6.3.0/dist/umd/react-router-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    :root{
+      --primary:#E30A17;--primary-dark:#b30813;--secondary:#0066CC;--secondary-dark:#0052a3;
+      --accent:#FF6600;--accent-dark:#cc5200;--white:#FFFFFF;
+      --gray-50:#F9FAFB;--gray-100:#F3F4F6;--gray-200:#E5E7EB;--gray-300:#D1D5DB;
+      --gray-400:#9CA3AF;--gray-500:#6B7280;--gray-600:#4B5563;--gray-700:#374151;
+      --gray-800:#1F2937;--gray-900:#111827;
+      --success:#10B981;--warning:#F59E0B;--danger:#EF4444;
+      --shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow:0 4px 6px rgba(0,0,0,.07);
+      --shadow-md:0 6px 20px rgba(0,0,0,.1);--shadow-lg:0 20px 40px rgba(0,0,0,.12);
+      --radius:8px;--radius-lg:16px;--radius-xl:24px;--transition:all .3s ease;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Inter',sans-serif;color:var(--gray-800);background:var(--white);line-height:1.6;overflow-x:hidden}
+    h1,h2,h3,h4,h5,h6{font-family:'Poppins',sans-serif;font-weight:700;line-height:1.2;color:var(--gray-900)}
+    a{text-decoration:none;color:inherit}img{max-width:100%;height:auto;display:block}ul{list-style:none}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 28px;border-radius:var(--radius);font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap}
+    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 4px 15px rgba(227,10,23,.3)}
+    .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px)}
+    .btn-secondary{background:var(--secondary);color:#fff;box-shadow:0 4px 15px rgba(0,102,204,.3)}
+    .btn-secondary:hover{background:var(--secondary-dark);transform:translateY(-2px)}
+    .btn-cta{background:var(--accent);color:#fff;box-shadow:0 4px 20px rgba(255,102,0,.4);font-size:16px;padding:14px 32px}
+    .btn-cta:hover{background:var(--accent-dark);transform:translateY(-2px)}
+    .btn-outline{background:transparent;border:2px solid #fff;color:#fff}
+    .btn-outline:hover{background:#fff;color:var(--primary)}
+    .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3)}
+    .btn-ghost:hover{background:rgba(255,255,255,.2)}
+    .btn-sm{padding:8px 18px;font-size:13px}.btn-lg{padding:16px 40px;font-size:17px}
+    .card{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:28px;transition:var(--transition)}
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    .card-bordered{border:1px solid var(--gray-200);box-shadow:var(--shadow-sm)}
+    .card-bordered:hover{border-color:var(--primary)}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+    .section{padding:80px 0}
+    .section-header{text-align:center;margin-bottom:56px}
+    .section-header h2{font-size:clamp(28px,4vw,42px);margin-bottom:16px}
+    .section-header p{font-size:18px;color:var(--gray-500);max-width:600px;margin:0 auto}
+    .section-title-accent{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+    .w-full{width:100%}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;font-family:'Poppins',sans-serif}
+    .badge-success{background:#D1FAE5;color:#065F46}.badge-warning{background:#FEF3C7;color:#92400E}
+    .badge-danger{background:#FEE2E2;color:#991B1B}.badge-info{background:#DBEAFE;color:#1E40AF}
+    .badge-primary{background:#FEE2E2;color:var(--primary)}
+    .stat-card{background:#fff;border-radius:var(--radius-lg);padding:28px 24px;text-align:center;box-shadow:var(--shadow-md);border-bottom:4px solid var(--primary);transition:var(--transition)}
+    .stat-card:hover{transform:translateY(-4px)}
+    .stat-num{font-family:'Poppins',sans-serif;font-size:42px;font-weight:800;color:var(--primary);line-height:1}
+    .stat-label{font-size:15px;color:var(--gray-500);margin-top:8px;font-weight:500}
+    .progress-bar{background:var(--gray-200);border-radius:99px;height:8px;overflow:hidden}
+    .progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width 1s ease}
+    .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+    .form-label{font-size:14px;font-weight:600;color:var(--gray-700);font-family:'Poppins',sans-serif}
+    .form-control{width:100%;padding:12px 16px;border:2px solid var(--gray-200);border-radius:var(--radius);font-family:'Inter',sans-serif;font-size:15px;color:var(--gray-800);transition:var(--transition);background:#fff;outline:none}
+    .form-control:focus{border-color:var(--secondary);box-shadow:0 0 0 3px rgba(0,102,204,.1)}
+    .alert{padding:14px 18px;border-radius:var(--radius);display:flex;align-items:flex-start;gap:12px;font-size:14px;margin-bottom:16px}
+    .alert-success{background:#D1FAE5;color:#065F46;border-left:4px solid var(--success)}
+    .alert-warning{background:#FEF3C7;color:#92400E;border-left:4px solid var(--warning)}
+    .alert-danger{background:#FEE2E2;color:#991B1B;border-left:4px solid var(--danger)}
+    .alert-info{background:#DBEAFE;color:#1E40AF;border-left:4px solid var(--secondary)}
+    .tabs-nav{display:flex;border-bottom:2px solid var(--gray-200);margin-bottom:32px;overflow-x:auto}
+    .tab-btn{padding:14px 28px;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;color:var(--gray-500);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;transition:var(--transition);white-space:nowrap}
+    .tab-btn:hover{color:var(--primary)}.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary)}
+    .accordion-item{border:1px solid var(--gray-200);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+    .accordion-header{padding:18px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:'Poppins',sans-serif;font-weight:600;font-size:16px;color:var(--gray-800);transition:var(--transition)}
+    .accordion-header:hover{background:var(--gray-50)}.accordion-header.open{color:var(--primary);background:#FFF5F5}
+    .accordion-body{padding:0 24px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+    .accordion-body.open{padding:16px 24px 24px;max-height:600px}
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
+    .modal-content{background:#fff;border-radius:var(--radius-xl);max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 30px 60px rgba(0,0,0,.2)}
+    .whatsapp-float{position:fixed;bottom:28px;left:28px;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;font-size:28px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);z-index:999;transition:var(--transition);animation:pulse 2s infinite}
+    .whatsapp-float:hover{transform:scale(1.1)}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 0 0 15px rgba(37,211,102,0)}}
+    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(227,10,23,.92),rgba(0,30,80,.9));z-index:1}
+    .hero-bg-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;z-index:0;opacity:.35}
+    .hero-content{position:relative;z-index:2;color:#fff}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);padding:8px 18px;border-radius:99px;font-size:13px;font-weight:600;margin-bottom:24px;font-family:'Poppins',sans-serif}
+    .hero h1{font-size:clamp(28px,4.5vw,58px);font-weight:800;color:#fff;margin-bottom:20px;line-height:1.1}
+    .hero p{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,.9);margin-bottom:36px;max-width:600px;line-height:1.7}
+    .hero-buttons{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:48px}
+    .hero-stats{display:flex;flex-wrap:wrap;gap:24px}
+    .hero-stat{display:flex;align-items:center;gap:12px}
+    .hero-stat-icon{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:18px}
+    .hero-stat .num{font-family:'Poppins',sans-serif;font-weight:700;font-size:20px;color:#fff;line-height:1}
+    .hero-stat .label{font-size:12px;color:rgba(255,255,255,.7);line-height:1.3}
+    .bg-gray{background:var(--gray-50)}
+    .cta-section{background:linear-gradient(135deg,var(--primary),#b30813 50%,#001a4d);padding:80px 0;text-align:center;color:#fff;position:relative;overflow:hidden}
+    .testimonial-card{background:#fff;border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-md);position:relative}
+    .testimonial-avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--primary)}
+    .stars{color:#F59E0B;font-size:14px}
+    .video-placeholder{background:var(--gray-900);border-radius:var(--radius-lg);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:var(--transition)}
+    .video-play-btn{width:64px;height:64px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--primary)}
+    .comparison-table{width:100%;border-collapse:collapse;font-size:15px}
+    .comparison-table th,.comparison-table td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--gray-200)}
+    .comparison-table th{background:var(--gray-50);font-family:'Poppins',sans-serif;font-weight:600;color:var(--gray-700);font-size:14px}
+    .checklist-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--gray-100)}
+    .timeline-step{display:flex;gap:24px;position:relative;padding-bottom:48px}
+    .timeline-circle{width:60px;height:60px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;position:relative;z-index:1}
+    .dashboard-layout{display:flex;min-height:100vh;background:var(--gray-100)}
+    .dashboard-sidebar{width:260px;background:var(--gray-900);color:#fff;padding:28px 0;display:flex;flex-direction:column;flex-shrink:0}
+    .sidebar-nav-item{display:flex;align-items:center;gap:14px;padding:14px 24px;color:rgba(255,255,255,.6);cursor:pointer;transition:var(--transition);font-size:14px;font-weight:500;border-left:3px solid transparent}
+    .sidebar-nav-item:hover,.sidebar-nav-item.active{background:rgba(255,255,255,.08);color:#fff;border-left-color:var(--primary)}
+    .sidebar-nav-item i{width:20px}
+    .dashboard-main{flex:1;padding:32px;overflow-y:auto}
+    .dashboard-widget{background:#fff;border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm)}
+    .widget-title{font-family:'Poppins',sans-serif;font-size:17px;font-weight:700;color:var(--gray-900);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+    .chat-container{height:300px;overflow-y:auto;padding:16px;background:var(--gray-50);border-radius:var(--radius);margin-bottom:16px}
+    .chat-msg{display:flex;gap:10px;margin-bottom:16px}.chat-msg.own{flex-direction:row-reverse}
+    .chat-bubble{max-width:70%;padding:10px 16px;border-radius:18px;font-size:14px;line-height:1.5;background:#fff}
+    .chat-msg.own .chat-bubble{background:var(--primary);color:#fff}
+    nav.desktop-nav a{padding:8px 14px;border-radius:6px;font-size:14px;font-weight:600;font-family:'Poppins';white-space:nowrap}
+    @media(max-width:900px){.desktop-nav{display:none!important}.hamburger-btn{display:flex!important}}
+    @media(max-width:1024px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.section{padding:56px 0}.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.hero-buttons{flex-direction:column}.hero-buttons .btn{width:100%}.dashboard-layout{flex-direction:column}.dashboard-sidebar{width:100%}.two-col{grid-template-columns:1fr!important}}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--gray-300);border-radius:3px}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" data-presets="react">
+    const { useState, useEffect, useRef, createContext, useContext } = React;
+    const { HashRouter, Routes, Route, Link, useLocation, useNavigate } = ReactRouterDOM;
+
+    /* ============ AUTH CONTEXT ============ */
+    const AuthContext = createContext(null);
+    const MOCK_USER = { id:1, email:'demo@worldgate.com', name:'Jean Dupont', nationality:'Bénin', phone:'+229 97 00 00 00', photo:'https://ui-avatars.com/api/?name=Jean+Dupont&background=E30A17&color=fff&size=150', visaType:'Visa Travail', createdAt:'2026-05-01' };
+    function AuthProvider({children}){
+      const [user,setUser]=useState(()=>{try{const s=localStorage.getItem('wg_user');return s?JSON.parse(s):null}catch{return null}});
+      const login=(email,password)=>{
+        if(email==='demo@worldgate.com'&&password==='demo123'){setUser(MOCK_USER);localStorage.setItem('wg_user',JSON.stringify(MOCK_USER));return{success:true}}
+        if(email&&password.length>=6){const u={...MOCK_USER,email,name:email.split('@')[0],photo:`https://ui-avatars.com/api/?name=${encodeURIComponent(email)}&background=E30A17&color=fff&size=150`};setUser(u);localStorage.setItem('wg_user',JSON.stringify(u));return{success:true}}
+        return{success:false,error:'Email ou mot de passe incorrect'}
+      };
+      const register=(d)=>{const u={...MOCK_USER,...d,photo:`https://ui-avatars.com/api/?name=${encodeURIComponent(d.name)}&background=E30A17&color=fff&size=150`};setUser(u);localStorage.setItem('wg_user',JSON.stringify(u));return{success:true}};
+      const logout=()=>{setUser(null);localStorage.removeItem('wg_user')};
+      return <AuthContext.Provider value={{user,isAuthenticated:!!user,login,register,logout}}>{children}</AuthContext.Provider>;
+    }
+    const useAuth=()=>useContext(AuthContext);
+
+    /* ============ HEADER ============ */
+    const navLinks=[{label:'Accueil',path:'/'},{label:'Services',path:'/services'},{label:'Visa Turquie',path:'/visa'},{label:'Processus',path:'/processus'},{label:'Community',path:'/community'},{label:'Blog',path:'/blog'},{label:'Contact',path:'/contact'}];
+    function Header(){
+      const [scrolled,setScrolled]=useState(false);const [open,setOpen]=useState(false);const [lang,setLang]=useState('FR');
+      const {pathname}=useLocation();const {isAuthenticated,user,logout}=useAuth();
+      useEffect(()=>{const s=()=>setScrolled(window.scrollY>20);window.addEventListener('scroll',s);return()=>window.removeEventListener('scroll',s)},[]);
+      useEffect(()=>{setOpen(false)},[pathname]);
+      const isHome=pathname==='/';const light=scrolled||!isHome;
+      const txt=light?'var(--gray-800)':'white';
+      return <header style={{position:'fixed',top:0,left:0,right:0,zIndex:100,background:light?'rgba(255,255,255,.98)':'transparent',boxShadow:scrolled?'0 2px 20px rgba(0,0,0,.08)':'none',backdropFilter:scrolled?'blur(10px)':'none',transition:'all .3s'}}>
+        <div className="container"><div style={{display:'flex',alignItems:'center',justifyContent:'space-between',height:72,gap:24}}>
+          <Link to="/" style={{display:'flex',alignItems:'center',gap:10}}>
+            <div style={{width:40,height:40,background:'linear-gradient(135deg,var(--primary),var(--secondary))',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20}}>🌍</div>
+            <div><div style={{fontFamily:'Poppins',fontWeight:800,fontSize:20,color:light?'var(--primary)':'white',lineHeight:1}}>WorldGate</div><div style={{fontSize:10,color:light?'var(--gray-400)':'rgba(255,255,255,.7)',lineHeight:1,marginTop:2}}>Afrique → Turquie</div></div>
+          </Link>
+          <nav className="desktop-nav" style={{display:'flex',alignItems:'center',gap:4,flex:1,justifyContent:'center'}}>
+            {navLinks.map(l=><Link key={l.path} to={l.path} style={{color:pathname===l.path?'var(--primary)':txt,background:pathname===l.path?'rgba(227,10,23,.08)':'transparent'}}>{l.label}</Link>)}
+          </nav>
+          <div style={{display:'flex',alignItems:'center',gap:10}}>
+            <button onClick={()=>setLang(l=>l==='FR'?'EN':'FR')} style={{background:'transparent',border:`1px solid ${light?'var(--gray-300)':'rgba(255,255,255,.4)'}`,color:txt,padding:'6px 12px',borderRadius:6,cursor:'pointer',fontSize:12,fontWeight:700,fontFamily:'Poppins'}}>{lang}</button>
+            {isAuthenticated?<div style={{display:'flex',alignItems:'center',gap:8}}>
+              <Link to="/portail" style={{display:'flex',alignItems:'center',gap:8}}><img src={user.photo} style={{width:36,height:36,borderRadius:'50%',border:'2px solid var(--primary)'}}/><span style={{fontSize:14,fontWeight:600,color:txt}}>{user.name.split(' ')[0]}</span></Link>
+              <button onClick={logout} className="btn btn-sm" style={{background:'transparent',border:`1px solid ${light?'var(--gray-300)':'rgba(255,255,255,.4)'}`,color:txt}}><i className="fas fa-sign-out-alt"></i></button>
+            </div>:<React.Fragment>
+              <Link to="/portail" className="btn btn-sm" style={{background:'transparent',border:`1.5px solid ${light?'var(--secondary)':'rgba(255,255,255,.7)'}`,color:light?'var(--secondary)':'white'}}>Connexion</Link>
+              <Link to="/portail" className="btn btn-sm btn-primary">Créer un compte</Link>
+            </React.Fragment>}
+            <button className="hamburger-btn" onClick={()=>setOpen(o=>!o)} style={{background:'transparent',border:'none',cursor:'pointer',color:txt,fontSize:22,display:'none',padding:8}}><i className={`fas ${open?'fa-times':'fa-bars'}`}></i></button>
+          </div>
+        </div></div>
+        {open&&<div style={{background:'#fff',borderTop:'1px solid var(--gray-200)',padding:'16px 24px',boxShadow:'0 8px 30px rgba(0,0,0,.1)'}}>
+          {navLinks.map(l=><Link key={l.path} to={l.path} style={{display:'block',padding:'12px 8px',borderBottom:'1px solid var(--gray-100)',fontSize:15,fontWeight:600,fontFamily:'Poppins',color:pathname===l.path?'var(--primary)':'var(--gray-700)'}}>{l.label}</Link>)}
+          <div style={{display:'flex',gap:12,marginTop:16}}><Link to="/portail" className="btn btn-secondary w-full">Connexion</Link><Link to="/portail" className="btn btn-primary w-full">Compte</Link></div>
+        </div>}
+      </header>;
+    }
+
+    /* ============ FOOTER ============ */
+    function Footer(){
+      const year=new Date().getFullYear();
+      const social=[{i:'fab fa-facebook-f',h:'#'},{i:'fab fa-instagram',h:'#'},{i:'fab fa-whatsapp',h:'https://wa.me/22900000000'},{i:'fab fa-youtube',h:'#'},{i:'fab fa-tiktok',h:'#'}];
+      return <footer style={{background:'var(--gray-900)',color:'rgba(255,255,255,.7)',padding:'72px 0 32px'}}>
+        <div className="container">
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',gap:48,marginBottom:56}}>
+            <div>
+              <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:16}}><div style={{width:44,height:44,background:'linear-gradient(135deg,var(--primary),var(--secondary))',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:22}}>🌍</div><div><div style={{fontFamily:'Poppins',fontWeight:800,fontSize:20,color:'#fff'}}>WorldGate</div><div style={{fontSize:11,color:'rgba(255,255,255,.5)'}}>Afrique → Turquie</div></div></div>
+              <p style={{fontSize:14,lineHeight:1.7,marginBottom:20,maxWidth:260}}>Spécialiste UNIQUE immigration Afrique → Turquie. 95% de réussite. 1,200+ Africains aidés depuis Cotonou.</p>
+              <div style={{display:'flex',gap:12}}>{social.map(s=><a key={s.i} href={s.h} target="_blank" style={{width:38,height:38,background:'rgba(255,255,255,.08)',borderRadius:8,display:'flex',alignItems:'center',justifyContent:'center',color:'rgba(255,255,255,.6)'}}><i className={s.i}></i></a>)}</div>
+            </div>
+            <div><h4 style={{fontFamily:'Poppins',fontWeight:700,color:'#fff',fontSize:16,marginBottom:20}}>Services</h4>{['Visa Tourisme','Visa Travail','Visa Études','Visa Familial','Logement Turquie','Scholarships'].map(l=><Link key={l} to="/visa" style={{display:'block',fontSize:14,marginBottom:10,color:'rgba(255,255,255,.6)'}}>{l}</Link>)}</div>
+            <div><h4 style={{fontFamily:'Poppins',fontWeight:700,color:'#fff',fontSize:16,marginBottom:20}}>Liens rapides</h4>{[['Accueil','/'],['Processus','/processus'],['Checklist','/checklist'],['Portail client','/portail'],['Community','/community'],['Blog','/blog']].map(l=><Link key={l[0]} to={l[1]} style={{display:'block',fontSize:14,marginBottom:10,color:'rgba(255,255,255,.6)'}}>{l[0]}</Link>)}</div>
+            <div><h4 style={{fontFamily:'Poppins',fontWeight:700,color:'#fff',fontSize:16,marginBottom:20}}>Contact</h4>{[['fas fa-map-marker-alt','Cotonou, Littoral, Bénin'],['fas fa-phone','+229 XXX XXX XXX'],['fas fa-envelope','contact@worldgate.com'],['fas fa-clock','Lun–Sam 9h–18h (GMT+1)'],['fab fa-whatsapp','WhatsApp disponible']].map(c=><div key={c[0]} style={{display:'flex',alignItems:'flex-start',gap:12,marginBottom:14}}><i className={c[0]} style={{color:'var(--primary)',marginTop:2,width:16}}></i><span style={{fontSize:14}}>{c[1]}</span></div>)}</div>
+          </div>
+          <div style={{borderTop:'1px solid rgba(255,255,255,.08)',paddingTop:32,display:'flex',flexWrap:'wrap',justifyContent:'space-between',alignItems:'center',gap:16}}>
+            <p style={{fontSize:13}}>© {year} WorldGate. Tous droits réservés.</p>
+            <div style={{display:'flex',gap:24}}>{['Confidentialité','CGU','Cookies'].map(t=><a key={t} href="#" style={{fontSize:13,color:'rgba(255,255,255,.5)'}}>{t}</a>)}</div>
+            <div style={{display:'flex',alignItems:'center',gap:8}}><span style={{fontSize:11,color:'rgba(255,255,255,.3)'}}>Certifié</span><span style={{fontSize:18}}>🇹🇷</span><span style={{fontSize:18}}>🌍</span></div>
+          </div>
+        </div>
+      </footer>;
+    }
+    const WhatsAppFloat=()=><a href="https://wa.me/22900000000" target="_blank" className="whatsapp-float" title="WhatsApp"><i className="fab fa-whatsapp"></i></a>;
+
+    /* ============ AI VISA MATCHER ============ */
+    const QUESTIONS=[
+      {id:'objectif',q:'Quel est ton objectif principal en Turquie ?',opts:[{v:'tourisme',l:'🏖️ Tourisme / Vacances',d:'Moins de 30 jours'},{v:'travail',l:'💼 Travail / Emploi',d:'Contrat de travail'},{v:'etudes',l:'🎓 Études / Université',d:'Programme académique'},{v:'famille',l:'👨‍👩‍👧 Regroupement familial',d:'Rejoindre la famille'}]},
+      {id:'duree',q:'Quelle est la durée prévue de ton séjour ?',opts:[{v:'court',l:'⚡ Moins de 30 jours',d:'Court séjour'},{v:'moyen',l:'📅 1 à 6 mois',d:'Moyen séjour'},{v:'long',l:'🗓️ 6 mois à 2 ans',d:'Long séjour'},{v:'perm',l:'🏠 Plus de 2 ans',d:'Installation'}]},
+      {id:'budget',q:'Quel est ton budget pour les démarches ?',opts:[{v:'low',l:'💵 Moins de €200',d:'Budget serré'},{v:'mid',l:'💵💵 €200 – €500',d:'Budget moyen'},{v:'high',l:'💵💵💵 €500 – €1,000',d:'Confortable'},{v:'prem',l:'💰 Plus de €1,000',d:'Premium'}]},
+      {id:'nat',q:'De quel pays es-tu ressortissant(e) ?',opts:[{v:'benin',l:'🇧🇯 Bénin',d:''},{v:'senegal',l:'🇸🇳 Sénégal',d:''},{v:'nigeria',l:'🇳🇬 Nigeria',d:''},{v:'autre',l:'🌍 Autre pays',d:''}]},
+      {id:'profil',q:'Quel est ton profil professionnel ?',opts:[{v:'etu',l:'🎒 Étudiant(e)',d:''},{v:'pro',l:'👔 Professionnel(le)',d:'+2 ans exp.'},{v:'ent',l:'🚀 Entrepreneur',d:''},{v:'fam',l:'👨‍👩‍👦 Avec famille',d:''}]},
+    ];
+    const RESULTS={tourisme:{visa:'Visa Tourisme (e-Visa)',taux:95,prix:'€80–120',delai:'24 heures',icon:'🏖️'},travail:{visa:'Visa Travail',taux:90,prix:'€150–300',delai:'2–3 mois',icon:'💼'},etudes:{visa:'Visa Études',taux:95,prix:'€120–200',delai:'1–2 mois',icon:'🎓'},famille:{visa:'Visa Familial',taux:85,prix:'€150–250',delai:'3–4 mois',icon:'👨‍👩‍👧'}};
+    function AIVisaMatcher({onClose}){
+      const [step,setStep]=useState(0);const [ans,setAns]=useState({});const [loading,setLoading]=useState(false);const [res,setRes]=useState(null);
+      const answer=(id,v)=>{const na={...ans,[id]:v};setAns(na);if(step<QUESTIONS.length-1)setTimeout(()=>setStep(s=>s+1),300);else{setLoading(true);setTimeout(()=>{setRes(RESULTS[na.objectif]||RESULTS.tourisme);setLoading(false)},2000)}};
+      const progress=((step+(res?1:0))/QUESTIONS.length)*100;
+      return <div className="modal-overlay" onClick={e=>e.target===e.currentTarget&&onClose()}><div className="modal-content"><div style={{padding:'28px 32px'}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:24}}>
+          <div><div style={{display:'flex',alignItems:'center',gap:10}}><div style={{width:36,height:36,background:'linear-gradient(135deg,var(--primary),var(--secondary))',borderRadius:8,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18}}>🤖</div><h3 style={{fontFamily:'Poppins',fontSize:20}}>AI Visa Matcher</h3></div><p style={{fontSize:13,color:'var(--gray-500)',marginTop:4}}>{!res?`Question ${step+1} sur ${QUESTIONS.length}`:'Résultat de ton analyse'}</p></div>
+          <button onClick={onClose} style={{background:'none',border:'none',cursor:'pointer',fontSize:20,color:'var(--gray-400)'}}><i className="fas fa-times"></i></button>
+        </div>
+        {!res&&<div className="progress-bar" style={{marginBottom:28}}><div className="progress-fill" style={{width:progress+'%'}}></div></div>}
+        {loading&&<div style={{textAlign:'center',padding:'48px 0'}}><div style={{fontSize:48,marginBottom:20,animation:'spin 1s linear infinite'}}>⚙️</div><p style={{fontFamily:'Poppins',fontWeight:600,fontSize:16}}>Analyse en cours...</p><p style={{fontSize:14,color:'var(--gray-400)',marginTop:8}}>Notre IA analyse ton profil</p></div>}
+        {!loading&&!res&&<div><h4 style={{fontFamily:'Poppins',fontSize:18,marginBottom:24}}>{QUESTIONS[step].q}</h4><div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>{QUESTIONS[step].opts.map(o=><button key={o.v} onClick={()=>answer(QUESTIONS[step].id,o.v)} style={{padding:16,border:'2px solid var(--gray-200)',borderRadius:12,background:'#fff',cursor:'pointer',textAlign:'left',fontFamily:'inherit'}}><div style={{fontSize:15,fontWeight:700,fontFamily:'Poppins',color:'var(--gray-800)',marginBottom:o.d?4:0}}>{o.l}</div>{o.d&&<div style={{fontSize:12,color:'var(--gray-400)'}}>{o.d}</div>}</button>)}</div></div>}
+        {res&&<div><div style={{background:'linear-gradient(135deg,#FFF5F5,#EFF6FF)',border:'2px solid var(--primary)',borderRadius:16,padding:28,marginBottom:20,textAlign:'center'}}>
+          <div style={{fontSize:56,marginBottom:12}}>{res.icon}</div><h3 style={{fontFamily:'Poppins',fontSize:22,fontWeight:800,marginBottom:8}}>{res.visa}</h3><p style={{fontSize:14,color:'var(--gray-500)',marginBottom:24}}>Recommandation personnalisée</p>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}}>{[['🎯',res.taux+'%','Réussite'],['💰',res.prix,'Prix'],['⏱️',res.delai,'Délai']].map(s=><div key={s[2]} style={{background:'#fff',borderRadius:10,padding:'14px 10px'}}><div style={{fontSize:20,marginBottom:6}}>{s[0]}</div><div style={{fontFamily:'Poppins',fontWeight:800,fontSize:16,color:'var(--primary)'}}>{s[1]}</div><div style={{fontSize:11,color:'var(--gray-500)'}}>{s[2]}</div></div>)}</div>
+        </div><div style={{display:'flex',gap:12}}><Link to="/portail" className="btn btn-primary w-full"><i className="fas fa-user-plus"></i> Créer mon dossier</Link><button onClick={()=>{setStep(0);setAns({});setRes(null)}} className="btn" style={{background:'var(--gray-100)',color:'var(--gray-700)'}}>Recommencer</button></div></div>}
+      </div></div></div>;
+    }
+
+    /* ============ COST CALCULATOR ============ */
+    const COSTS={tourisme:{visa:100,assurance:80,l:'Tourisme'},travail:{visa:225,assurance:200,l:'Travail'},etudes:{visa:160,assurance:150,l:'Études'},famille:{visa:200,assurance:180,l:'Familial'}};
+    const BILLETS={benin:650,senegal:700,nigeria:750,ghana:720,cameroun:680,autre:800};
+    const LOGEMENT={studio:{l:'Studio (budget)',p:350},appart:{l:'Appartement 1 ch.',p:550},coloc:{l:'Colocation',p:250},hotel:{l:'Hôtel',p:800}};
+    const VIE={tourisme:0,travail:700,etudes:600,famille:900};
+    function CostCalculator({compact}){
+      const [f,setF]=useState({nat:'benin',visa:'travail',duree:3,log:'appart'});const [r,setR]=useState(null);
+      const set=(k,v)=>setF(p=>({...p,[k]:v}));
+      const calc=()=>{const c=COSTS[f.visa];const b=BILLETS[f.nat]||750;const m=parseInt(f.duree);const lo=LOGEMENT[f.log].p*Math.min(m,12);const vi=VIE[f.visa]*Math.max(m-1,0);setR({visa:c.visa,billet:b*2,log:lo,assurance:c.assurance,vie:vi,total:c.visa+b*2+lo+c.assurance+vi,vl:c.l,m})};
+      return <div style={{background:'#fff',borderRadius:16,padding:compact?20:32,boxShadow:'0 4px 20px rgba(0,0,0,.08)'}}>
+        {!compact&&<h3 style={{fontFamily:'Poppins',fontSize:22,marginBottom:8}}>💰 Calculateur de budget</h3>}
+        {!compact&&<p style={{fontSize:14,color:'var(--gray-500)',marginBottom:24}}>Estimez votre budget total pour immigrer en Turquie</p>}
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))',gap:16,marginBottom:20}}>
+          <div className="form-group" style={{margin:0}}><label className="form-label">Nationalité</label><select className="form-control" value={f.nat} onChange={e=>set('nat',e.target.value)}><option value="benin">🇧🇯 Bénin</option><option value="senegal">🇸🇳 Sénégal</option><option value="nigeria">🇳🇬 Nigeria</option><option value="ghana">🇬🇭 Ghana</option><option value="cameroun">🇨🇲 Cameroun</option><option value="autre">🌍 Autre</option></select></div>
+          <div className="form-group" style={{margin:0}}><label className="form-label">Type de visa</label><select className="form-control" value={f.visa} onChange={e=>set('visa',e.target.value)}><option value="tourisme">Tourisme</option><option value="travail">Travail</option><option value="etudes">Études</option><option value="famille">Familial</option></select></div>
+          <div className="form-group" style={{margin:0}}><label className="form-label">Durée (mois)</label><select className="form-control" value={f.duree} onChange={e=>set('duree',e.target.value)}>{[1,3,6,12,24].map(m=><option key={m} value={m}>{m} mois</option>)}</select></div>
+          <div className="form-group" style={{margin:0}}><label className="form-label">Logement</label><select className="form-control" value={f.log} onChange={e=>set('log',e.target.value)}>{Object.entries(LOGEMENT).map(([k,v])=><option key={k} value={k}>{v.l}</option>)}</select></div>
+        </div>
+        <button className="btn btn-cta w-full" onClick={calc}><i className="fas fa-calculator"></i> Calculer mon budget</button>
+        {r&&<div style={{borderTop:'2px dashed var(--gray-200)',paddingTop:24,marginTop:24}}>
+          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginBottom:20}}>
+            {[[`Visa ${r.vl}`,r.visa],['Billets avion (A/R)',r.billet],[`Logement (${r.m} mois)`,r.log],['Assurance voyage',r.assurance],...(r.vie>0?[[`Vie quotidienne (${r.m-1} mois)`,r.vie]]:[])].map(it=><div key={it[0]} style={{display:'flex',justifyContent:'space-between',background:'var(--gray-50)',padding:'10px 14px',borderRadius:8}}><span style={{fontSize:13,color:'var(--gray-600)'}}>{it[0]}</span><span style={{fontSize:13,fontWeight:700,fontFamily:'Poppins'}}>€{it[1].toLocaleString()}</span></div>)}
+          </div>
+          <div style={{background:'linear-gradient(135deg,var(--primary),var(--secondary))',borderRadius:12,padding:'18px 24px',display:'flex',justifyContent:'space-between',alignItems:'center'}}><div><div style={{fontSize:12,color:'rgba(255,255,255,.8)'}}>Budget total estimé</div><div style={{fontFamily:'Poppins',fontSize:32,fontWeight:800,color:'#fff'}}>€{r.total.toLocaleString()}</div></div><Link to="/portail" className="btn btn-sm" style={{background:'rgba(255,255,255,.2)',color:'#fff',border:'1px solid rgba(255,255,255,.4)'}}>Commencer →</Link></div>
+        </div>}
+      </div>;
+    }
+
+    /* ============ DOCUMENT CHECKER ============ */
+    const CHECKS={passeport:[['Lisibilité du document','Texte et photo clairs'],['Validité ≥ 6 mois','Après date d\'entrée'],['Pages vides disponibles','Au moins 2 pages'],['Format correct','PDF/JPG accepté']],photo:[['Format 45mm × 35mm','Taille réglementaire'],['Fond blanc uni','Pas de motifs'],['Visage occupe 70%','Centré'],['Photo récente','<30 jours']],releves:[['3 mois minimum','Relevés récents'],['Fonds suffisants','€50/jour'],['Relevés lisibles','Chiffres visibles'],['Tampon bancaire','Authentifié']]};
+    function DocumentChecker(){
+      const [type,setType]=useState('passeport');const [file,setFile]=useState(null);const [loading,setLoading]=useState(false);const [res,setRes]=useState(null);const ref=useRef();
+      const analyze=()=>{if(!file)return;setLoading(true);setTimeout(()=>{const c=CHECKS[type];setRes(c.map((x,i)=>({l:x[0],d:x[1],ok:i<c.length-1?true:Math.random()>.3})));setLoading(false)},2000)};
+      const allOk=res&&res.every(r=>r.ok);
+      const labels={passeport:'🛂 Passeport',photo:'📸 Photo',releves:'🏦 Relevés'};
+      return <div style={{background:'#fff',borderRadius:16,padding:28,boxShadow:'0 4px 20px rgba(0,0,0,.08)'}}>
+        <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:24}}><div style={{width:44,height:44,background:'linear-gradient(135deg,var(--secondary),#0099ff)',borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center',fontSize:22}}>🤖</div><div><h3 style={{fontFamily:'Poppins',fontSize:18}}>AI Document Checker</h3><p style={{fontSize:13,color:'var(--gray-500)'}}>Vérification automatique</p></div></div>
+        <div style={{display:'flex',gap:10,marginBottom:20}}>{Object.keys(CHECKS).map(k=><button key={k} onClick={()=>{setType(k);setFile(null);setRes(null)}} style={{padding:'8px 18px',borderRadius:20,border:'2px solid',borderColor:type===k?'var(--secondary)':'var(--gray-200)',background:type===k?'var(--secondary)':'#fff',color:type===k?'#fff':'var(--gray-600)',cursor:'pointer',fontFamily:'Poppins',fontWeight:600,fontSize:13}}>{labels[k]}</button>)}</div>
+        <div onClick={()=>ref.current.click()} style={{border:'2px dashed var(--gray-300)',borderRadius:16,padding:40,textAlign:'center',cursor:'pointer',background:'var(--gray-50)',marginBottom:16}}>
+          <input ref={ref} type="file" style={{display:'none'}} onChange={e=>{setFile(e.target.files[0]);setRes(null)}}/>
+          {file?<div><i className="fas fa-file-circle-check" style={{fontSize:48,color:'var(--success)',marginBottom:12}}></i><p style={{fontWeight:700,fontFamily:'Poppins'}}>{file.name}</p></div>:<React.Fragment><i className="fas fa-cloud-arrow-up" style={{fontSize:48,color:'var(--gray-300)',marginBottom:16}}></i><p style={{fontFamily:'Poppins',fontWeight:600,fontSize:16,color:'var(--gray-700)',marginBottom:8}}>Cliquer pour sélectionner un document</p><p style={{fontSize:14,color:'var(--gray-400)'}}>PDF, JPG, PNG</p></React.Fragment>}
+        </div>
+        <button className="btn btn-secondary w-full" onClick={analyze} disabled={!file||loading} style={{opacity:!file?.6:1}}>{loading?<React.Fragment><i className="fas fa-spinner fa-spin"></i> Analyse...</React.Fragment>:<React.Fragment><i className="fas fa-microscope"></i> Analyser le document</React.Fragment>}</button>
+        {res&&<div style={{marginTop:20}}><div style={{background:allOk?'#D1FAE5':'#FEF3C7',borderRadius:12,padding:'14px 18px',marginBottom:16,display:'flex',alignItems:'center',gap:12}}><span style={{fontSize:24}}>{allOk?'✅':'⚠️'}</span><div><div style={{fontFamily:'Poppins',fontWeight:700,color:allOk?'#065F46':'#92400E'}}>{allOk?'Document validé !':'Corrections requises'}</div><div style={{fontSize:13,color:allOk?'#047857':'#B45309'}}>{res.filter(r=>r.ok).length}/{res.length} critères satisfaits</div></div></div>
+          {res.map((r,i)=><div key={i} style={{display:'flex',alignItems:'center',gap:12,padding:'10px 0',borderBottom:'1px solid var(--gray-100)'}}><span style={{fontSize:20}}>{r.ok?'✅':'❌'}</span><div><div style={{fontWeight:600,fontSize:14}}>{r.l}</div><div style={{fontSize:12,color:'var(--gray-400)'}}>{r.d}</div></div></div>)}
+        </div>}
+      </div>;
+    }
+
+    /* ============ HOME ============ */
+    const STATS=[['95%','Taux de réussite visa','fas fa-trophy','var(--primary)'],['1,200+','Africains aidés','fas fa-users','var(--secondary)'],['24h','Réponse garantie','fas fa-bolt','var(--accent)'],['5','Langues supportées','fas fa-language','var(--success)']];
+    const HVISAS=[['🏖️','Visa Tourisme','e-Visa rapide, <30 jours. Istanbul, Ankara, Antalya.','95%','24h','€80-120'],['💼','Visa Travail','Contrat d\'emploi turc. Accompagnement A à Z.','90%','2-3 mois','€150-300'],['🎓','Visa Études','50+ universités. Scholarships jusqu\'à €5,000.','95%','1-2 mois','€120-200'],['👨‍👩‍👧','Visa Familial','Regroupement familial. Rejoignez vos proches.','85%','3-4 mois','€150-250']];
+    const WHY=[['🎯','Spécialiste TURQUIE ONLY','100% dédiés à la Turquie. Résultat : 95% de réussite vs 60% pour les autres.','var(--primary)'],['🔄','Solution 360°','Visa + logement + assurance + billets + scholarships. Un seul interlocuteur.','var(--secondary)'],['🤝','Ambassadeurs Africains','Nos ambassadeurs vivent en Turquie. Ils répondent dans votre langue.','var(--accent)']];
+    const TESTI=[['Jean Konou','Sénégal','Istanbul','Visa Travail','WorldGate m\'a obtenu mon visa travail en 2 mois. Équipe francophone, suivi de chaque étape. Je recommande à 100% !'],['Marie Adjovi','Bénin','Ankara','Visa Études','Grâce à eux, scholarship complète à l\'université d\'Ankara. Processus simple et transparent.'],['Peter Okonkwo','Nigeria','Izmir','Visa Tourisme','e-Visa Turquie en 24h. Service professionnel, prix honnête. La meilleure agence Afrique-Turquie !']];
+    function Home(){
+      const [matcher,setMatcher]=useState(false);
+      return <React.Fragment>
+        <section className="hero">
+          <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1920&q=80" className="hero-bg-img"/><div className="hero-bg"></div>
+          <div className="container hero-content" style={{width:'100%',paddingTop:80}}><div style={{maxWidth:760}}>
+            <div className="hero-badge"><span>🌍</span> Spécialiste #1 Immigration Afrique → Turquie</div>
+            <h1>95% de réussite visa Turquie • 4.9/5 Google • 1,200+ Africains aidés</h1>
+            <p>Spécialiste UNIQUE immigration Afrique → Turquie. Visa tourisme, travail, études, familial. Solution 360° depuis Cotonou, Bénin.</p>
+            <div className="hero-buttons">
+              <button className="btn btn-cta btn-lg" onClick={()=>setMatcher(true)}><i className="fas fa-robot"></i> AI Visa Matcher</button>
+              <Link to="/portail" className="btn btn-outline btn-lg"><i className="fas fa-user-plus"></i> Créer compte gratuit</Link>
+              <a href="https://wa.me/22900000000" target="_blank" className="btn btn-ghost btn-lg"><i className="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+            <div className="hero-stats">{[['4.9/5','Google Reviews','⭐'],['1,200+','Avis clients','💬'],['50+','Universités','🎓'],['24h','Réponse garantie','⚡']].map(s=><div key={s[1]} className="hero-stat"><div className="hero-stat-icon">{s[2]}</div><div><div className="num">{s[0]}</div><div className="label">{s[1]}</div></div></div>)}</div>
+          </div></div>
+        </section>
+        <section style={{padding:'64px 0'}}><div className="container"><div className="grid-4">{STATS.map(s=><div key={s[1]} className="stat-card" style={{borderBottomColor:s[3]}}><div style={{fontSize:36,marginBottom:12}}><i className={s[2]} style={{color:s[3]}}></i></div><div className="stat-num" style={{color:s[3]}}>{s[0]}</div><div className="stat-label">{s[1]}</div></div>)}</div></div></section>
+        <section className="section bg-gray"><div className="container"><div className="section-header"><div className="hero-badge" style={{background:'rgba(227,10,23,.08)',color:'var(--primary)',border:'1px solid rgba(227,10,23,.2)'}}>Pourquoi nous choisir</div><h2>La différence WorldGate</h2><p>Nous sommes des experts dédiés à <strong>une seule destination : la Turquie.</strong></p></div><div className="grid-3">{WHY.map(w=><div key={w[1]} className="card" style={{textAlign:'center'}}><div style={{width:80,height:80,background:w[3]+'15',borderRadius:20,display:'flex',alignItems:'center',justifyContent:'center',fontSize:36,margin:'0 auto 20px'}}>{w[0]}</div><h3 style={{fontSize:19,marginBottom:12}}>{w[1]}</h3><p style={{fontSize:15,color:'var(--gray-500)',lineHeight:1.7}}>{w[2]}</p></div>)}</div></div></section>
+        <section className="section"><div className="container"><div className="section-header"><div className="hero-badge" style={{background:'rgba(0,102,204,.08)',color:'var(--secondary)',border:'1px solid rgba(0,102,204,.2)'}}>Nos services visa</div><h2>Quel visa pour votre projet ?</h2><p>4 types de visas, une expertise unique.</p></div><div className="grid-4">{HVISAS.map(v=><div key={v[1]} className="card card-bordered"><div style={{fontSize:48,marginBottom:16}}>{v[0]}</div><h3 style={{fontSize:18,marginBottom:8}}>{v[1]}</h3><p style={{fontSize:14,color:'var(--gray-500)',marginBottom:20,lineHeight:1.6}}>{v[2]}</p><div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8,marginBottom:20}}>{[['Réussite',v[3],'var(--success)'],['Délai',v[4],'var(--secondary)'],['Prix',v[5],'var(--accent)']].map(d=><div key={d[0]} style={{background:'var(--gray-50)',borderRadius:8,padding:'8px 4px',textAlign:'center'}}><div style={{fontFamily:'Poppins',fontWeight:700,fontSize:13,color:d[2]}}>{d[1]}</div><div style={{fontSize:10,color:'var(--gray-400)'}}>{d[0]}</div></div>)}</div><Link to="/visa" className="btn btn-primary w-full btn-sm">Voir détails →</Link></div>)}</div></div></section>
+        <section className="section bg-gray"><div className="container"><div className="section-header"><div className="hero-badge" style={{background:'rgba(255,102,0,.08)',color:'var(--accent)',border:'1px solid rgba(255,102,0,.2)'}}>Témoignages clients</div><h2>Ils ont réussi leur projet</h2><p>1,200+ Africains nous font confiance.</p></div><div className="grid-3">{TESTI.map(t=><div key={t[0]} className="testimonial-card"><div className="video-placeholder" style={{marginBottom:20,background:'linear-gradient(135deg,#1a1a2e,#16213e)'}}><div className="video-play-btn"><i className="fas fa-play" style={{marginLeft:3}}></i></div></div><div style={{display:'flex',alignItems:'center',gap:14,marginBottom:16}}><img src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t[0])}&background=random&size=56`} className="testimonial-avatar"/><div><div style={{fontFamily:'Poppins',fontWeight:700,fontSize:16}}>{t[0]}</div><div style={{fontSize:13,color:'var(--gray-500)'}}>🌍 {t[1]} → 🇹🇷 {t[2]}</div><span className="badge badge-primary" style={{fontSize:11,marginTop:2}}>{t[3]}</span></div></div><div className="stars" style={{marginBottom:10}}>★★★★★</div><p style={{fontSize:15,color:'var(--gray-600)',lineHeight:1.7,fontStyle:'italic'}}>"{t[4]}"</p></div>)}</div></div></section>
+        <section className="cta-section"><div className="container"><div style={{maxWidth:700,margin:'0 auto'}}><div style={{fontSize:56,marginBottom:20}}>🚀</div><h2 style={{fontSize:'clamp(28px,4vw,46px)',color:'#fff',marginBottom:16}}>Commence ton processus maintenant</h2><p style={{fontSize:18,color:'rgba(255,255,255,.85)',marginBottom:36}}>Rejoins les 1,200+ Africains qui ont réussi leur immigration en Turquie avec WorldGate.</p><div style={{display:'flex',gap:16,justifyContent:'center',flexWrap:'wrap'}}><Link to="/portail" className="btn btn-cta btn-lg"><i className="fas fa-user-plus"></i> Créer un compte gratuit</Link><button onClick={()=>setMatcher(true)} className="btn btn-outline btn-lg"><i className="fas fa-robot"></i> AI Visa Matcher</button></div></div></div></section>
+        {matcher&&<AIVisaMatcher onClose={()=>setMatcher(false)}/>}
+      </React.Fragment>;
+    }
+
+    /* ============ PAGE HEADER HELPER ============ */
+    const PageHead=({grad,badge,title,sub})=><section style={{background:grad,padding:'120px 0 64px',color:'#fff'}}><div className="container" style={{textAlign:'center'}}><div className="hero-badge" style={{marginBottom:16,display:'inline-flex'}}>{badge}</div><h1 style={{color:'#fff',fontSize:'clamp(28px,4vw,50px)',marginBottom:16}}>{title}</h1><p style={{color:'rgba(255,255,255,.85)',fontSize:18,maxWidth:600,margin:'0 auto'}}>{sub}</p></div></section>;
+
+    /* ============ SERVICES ============ */
+    const SVISAS=[['🏖️','Visa Tourisme','var(--success)','Découvrez Istanbul, Cappadoce, Antalya. e-Visa rapide 24h.',['Traitement 24h','100% online','Valide 180 jours','Entrées multiples']],['💼','Visa Travail','var(--secondary)','Emploi en Turquie avec 200+ employeurs partenaires.',['Contrat requis','Réseau 200+ employeurs','Renouvelable','Permis résidence']],['🎓','Visa Études','var(--accent)','50+ universités. Scholarships jusqu\'à €5,000.',['50+ universités','Scholarships €5,000+','Logement étudiant','Support académique']],['👨‍👩‍👧','Visa Familial','var(--primary)','Rejoignez votre famille en Turquie. Accompagnement juridique.',['Regroupement officiel','Toutes nationalités','Accompagnement juridique','Renouvellement annuel']]];
+    const SERVICES=[['🏠','Logement Turquie','Appartements Istanbul/Ankara/Izmir. -10% du marché.'],['🛡️','Assurance Voyage','Bupa. Couverture €30,000+ rapatriement. -8% exclusif.'],['✈️','Billets Avion','Tarifs négociés. Jusqu\'à -15% Afrique→Turquie.'],['📄','Translation Documents','Traduction FR↔TR certifiée. Livraison 24h.'],['🏦','Banking Turquie','Ouverture compte bancaire turc à distance.'],['🎓','Scholarships','5,000+ € disponibles. Application accompagnée.'],['🎤','Pre-departure','Webinaire 1h avant départ. Culture, lois, pratique.'],['🤲','Post-arrival','Accueil aéroport + logement + banque. 30 jours.'],['👥','Community','Forum 1,200+ membres actifs. Entraide & conseils.']];
+    function Services(){
+      const [active,setActive]=useState(null);
+      return <React.Fragment>
+        <PageHead grad="linear-gradient(135deg,var(--primary),#001a4d)" badge="Services" title="Solution 360° Afrique → Turquie" sub="Tout en 1 place. Visa + logement + assurance + billets + scholarships + community."/>
+        <section className="section"><div className="container"><div className="section-header"><h2>Types de visas Turquie</h2><p>Choisissez le visa qui correspond à votre projet.</p></div><div className="grid-4">{SVISAS.map(v=><div key={v[1]} className="card" style={{cursor:'pointer',border:`2px solid ${active===v[1]?v[2]:'transparent'}`}} onClick={()=>setActive(active===v[1]?null:v[1])}><div style={{fontSize:48,marginBottom:16}}>{v[0]}</div><h3 style={{fontSize:19,marginBottom:8,color:v[2]}}>{v[1]}</h3><p style={{fontSize:14,color:'var(--gray-500)',marginBottom:16,lineHeight:1.6}}>{v[3]}</p>{active===v[1]&&<div style={{borderTop:'1px solid var(--gray-100)',paddingTop:16}}>{v[4].map(f=><div key={f} style={{display:'flex',alignItems:'center',gap:8,marginBottom:8}}><i className="fas fa-check-circle" style={{color:v[2],fontSize:14}}></i><span style={{fontSize:14,color:'var(--gray-700)'}}>{f}</span></div>)}</div>}<Link to="/visa" className="btn btn-sm w-full" style={{background:v[2],color:'#fff',marginTop:8}}>Voir les exigences</Link></div>)}</div></div></section>
+        <section className="section bg-gray"><div className="container"><div className="section-header"><h2>Services complémentaires</h2><p>Immigrer c'est plus qu'un visa. Nous prenons tout en charge.</p></div><div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:20}}>{SERVICES.map(s=><div key={s[1]} className="card card-bordered" style={{display:'flex',gap:16,padding:22}}><div style={{width:52,height:52,background:'var(--gray-100)',borderRadius:12,display:'flex',alignItems:'center',justifyContent:'center',fontSize:24,flexShrink:0}}>{s[0]}</div><div><h4 style={{fontFamily:'Poppins',fontWeight:700,fontSize:16,marginBottom:6}}>{s[1]}</h4><p style={{fontSize:13,color:'var(--gray-500)',lineHeight:1.6}}>{s[2]}</p></div></div>)}</div></div></section>
+        <section className="cta-section"><div className="container" style={{textAlign:'center'}}><h2 style={{color:'#fff',fontSize:'clamp(24px,3.5vw,40px)',marginBottom:16}}>Prêt à commencer ?</h2><p style={{color:'rgba(255,255,255,.85)',fontSize:17,marginBottom:32}}>Créez votre compte gratuit en 5 minutes.</p><Link to="/portail" className="btn btn-cta btn-lg"><i className="fas fa-rocket"></i> Commencer mon dossier</Link></div></section>
+      </React.Fragment>;
+    }
+
+    /* ============ VISA ============ */
+    const VTABS=[
+      {id:'tourisme',label:'🏖️ Tourisme',title:'Visa Tourisme Turquie (e-Visa)',color:'#10B981',duree:'< 30 jours',type:'e-Visa',prix:'€80–120',delai:'24 heures',taux:'95%',desc:'Le e-Visa turc est la solution la plus simple pour visiter la Turquie. 100% en ligne, réponse 24h.',docs:['Passeport valide 6 mois (2 pages vides)','Photo 45×35mm fond blanc','Billet avion A/R confirmé','Réservation hôtel (7 nuits min)','Assurance médicale €30,000','Relevés bancaires 3 mois']},
+      {id:'travail',label:'💼 Travail',title:'Visa Travail Turquie',color:'var(--secondary)',duree:'1–2 ans',type:'Consulat',prix:'€150–300',delai:'2–3 mois',taux:'90%',desc:'Pour travailler légalement en Turquie avec un contrat d\'emploi. Droit à la résidence.',docs:['Passeport valide 6 mois','Photo 45×35mm','Contrat de travail turc','Casier judiciaire','CV professionnel','Diplômes','Relevés bancaires 3 mois']},
+      {id:'etudes',label:'🎓 Études',title:'Visa Études Turquie',color:'var(--accent)',duree:'1–4 ans',type:'Consulat',prix:'€120–200',delai:'1–2 mois',taux:'95%',desc:'Étudiez dans 50+ universités turques partenaires. Scholarships jusqu\'à €5,000.',docs:['Passeport valide 6 mois','Photo 45×35mm','Lettre d\'admission','Diplômes légalisés','Certificat de langue','Relevés bancaires','Assurance étudiante']},
+      {id:'famille',label:'👨‍👩‍👧 Familial',title:'Visa Regroupement Familial',color:'var(--primary)',duree:'1–2 ans',type:'Consulat',prix:'€150–250',delai:'3–4 mois',taux:'85%',desc:'Rejoignez un membre de votre famille résidant légalement en Turquie.',docs:['Passeport valide 6 mois','Photo 45×35mm','Preuve lien familial','Permis résidence du membre','Preuve hébergement','Relevés du garant','Assurance famille']},
+    ];
+    const COMPARE=[['Durée séjour','< 30 jours','> 30 jours'],['Types','Tourisme','Travail, études, familial'],['Délai','24 heures','1 à 4 mois'],['Prix','€80–120','€120–300'],['Application','100% online','Consulat physique'],['Réussite','95%','85–95%'],['Documents','5 documents','7–10 documents']];
+    function Visa(){
+      const [tab,setTab]=useState('tourisme');const t=VTABS.find(x=>x.id===tab);const [ck,setCk]=useState({});
+      const done=Object.values(ck).filter(Boolean).length;
+      return <React.Fragment>
+        <PageHead grad="linear-gradient(135deg,var(--secondary),#001a4d)" badge="🇹🇷 Visa Turquie" title="Exigences visa Turquie par type" sub="Toutes les informations officielles pour votre visa turc. Mis à jour 2026."/>
+        <section className="section"><div className="container">
+          <div className="tabs-nav">{VTABS.map(x=><button key={x.id} className={`tab-btn ${tab===x.id?'active':''}`} onClick={()=>{setTab(x.id);setCk({})}}>{x.label}</button>)}</div>
+          <div className="two-col" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:32}}>
+            <div>
+              <div style={{background:`linear-gradient(135deg,${t.color}15,white)`,border:`2px solid ${t.color}30`,borderRadius:16,padding:28,marginBottom:24}}>
+                <h2 style={{fontSize:24,marginBottom:8,color:t.color}}>{t.title}</h2><p style={{color:'var(--gray-500)',marginBottom:20,lineHeight:1.7}}>{t.desc}</p>
+                <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:12}}>{[['📅','Durée',t.duree],['🛂','Type',t.type],['⏱️','Délai',t.delai],['💰','Prix',t.prix]].map(d=><div key={d[1]} style={{background:'#fff',borderRadius:10,padding:14}}><div style={{fontSize:18,marginBottom:6}}>{d[0]}</div><div style={{fontFamily:'Poppins',fontWeight:700,fontSize:15}}>{d[2]}</div><div style={{fontSize:12,color:'var(--gray-400)'}}>{d[1]}</div></div>)}</div>
+                <div style={{marginTop:20,display:'flex',alignItems:'center',gap:10}}><div style={{fontFamily:'Poppins',fontWeight:800,fontSize:28,color:t.color}}>{t.taux}</div><div><div style={{fontWeight:700,color:'var(--gray-700)'}}>Taux de réussite</div><div style={{fontSize:12,color:'var(--gray-400)'}}>Basé sur 1,200+ dossiers</div></div></div>
+              </div>
+            </div>
+            <div>
+              <div style={{background:'#fff',borderRadius:16,padding:28,boxShadow:'0 4px 20px rgba(0,0,0,.08)',marginBottom:24}}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:20}}><h3 style={{fontFamily:'Poppins',fontSize:18}}>📋 Documents requis</h3><span className="badge badge-info">{done}/{t.docs.length} préparés</span></div>
+                <div className="progress-bar" style={{marginBottom:20}}><div className="progress-fill" style={{width:(done/t.docs.length*100)+'%'}}></div></div>
+                {t.docs.map((d,i)=><div key={i} className="checklist-item" style={{cursor:'pointer'}} onClick={()=>setCk(c=>({...c,[i]:!c[i]}))}><span style={{fontSize:18}}>{ck[i]?'✅':'⬜'}</span><span style={{fontSize:15,color:ck[i]?'var(--gray-400)':'var(--gray-700)',textDecoration:ck[i]?'line-through':'none'}}>{d}</span></div>)}
+                <Link to="/portail" className="btn btn-primary w-full" style={{marginTop:20}}><i className="fas fa-upload"></i> Upload sécurisé</Link>
+              </div>
+              <div className="alert alert-warning"><i className="fas fa-triangle-exclamation"></i><div><strong>Erreur à éviter :</strong> Un dossier incomplet = REFUS automatique. Notre AI Checker vérifie chaque document.</div></div>
+            </div>
+          </div>
+        </div></section>
+        <section className="section bg-gray"><div className="container"><div className="section-header"><h2>e-Visa vs Consulat</h2><p>Choisissez la procédure adaptée à votre situation.</p></div><div style={{overflowX:'auto'}}><table className="comparison-table" style={{background:'#fff',borderRadius:16,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,.08)'}}><thead><tr><th>Critère</th><th style={{color:'var(--success)'}}>⚡ e-Visa</th><th style={{color:'var(--secondary)'}}>🏛️ Consulat</th></tr></thead><tbody>{COMPARE.map(r=><tr key={r[0]}><td style={{fontWeight:600,color:'var(--gray-700)'}}>{r[0]}</td><td style={{color:'var(--success)',fontWeight:600}}>{r[1]}</td><td style={{color:'var(--secondary)',fontWeight:600}}>{r[2]}</td></tr>)}</tbody></table></div></div></section>
+        <section className="section"><div className="container" style={{maxWidth:700}}><div className="section-header"><h2>Estimez votre budget</h2><p>Calculez le coût total de votre immigration.</p></div><CostCalculator/></div></section>
+      </React.Fragment>;
+    }
+
+    /* ============ CHECKLIST ============ */
+    const REQ=[['🛂','Passeport','Valide 6 mois après entrée, 2 pages vides','Passeport <6 mois = REFUS AUTOMATIQUE'],['📸','Photo d\'identité','45mm×35mm, fond blanc, <30 jours','Photo mauvais format = REFUS'],['✈️','Billet avion A/R','Réservation confirmée (pas une option)','Billet non confirmé = REFUS'],['🏨','Preuve d\'hébergement','Hôtel (7 nuits) ou invitation notariée','Hébergement non confirmé = REFUS'],['🛡️','Assurance voyage','Couverture médicale €30,000 + rapatriement','Assurance <€30,000 = REFUS'],['🏦','Relevés bancaires','3 mois, fonds suffisants (€50/jour)','Relevés <3 mois = REFUS']];
+    function Checklist(){
+      const [ck,setCk]=useState({});const [open,setOpen]=useState(null);const done=Object.values(ck).filter(Boolean).length;
+      return <React.Fragment>
+        <PageHead grad="linear-gradient(135deg,#10B981,#047857)" badge="📋 Checklist" title="Checklist complète documents visa" sub="Préparez votre dossier sans erreur. Chaque document vérifié = une chance de plus."/>
+        <section style={{padding:'40px 0',background:'#fff',borderBottom:'1px solid var(--gray-200)'}}><div className="container" style={{maxWidth:700}}><div style={{display:'flex',justifyContent:'space-between',marginBottom:12}}><span style={{fontFamily:'Poppins',fontWeight:700,fontSize:18}}>Documents préparés</span><span style={{fontFamily:'Poppins',fontWeight:800,fontSize:22,color:'var(--primary)'}}>{done}/{REQ.length}</span></div><div className="progress-bar" style={{height:12}}><div className="progress-fill" style={{width:(done/REQ.length*100)+'%'}}></div></div>{done===REQ.length&&<div className="alert alert-success" style={{marginTop:16}}><i className="fas fa-circle-check"></i><strong>Excellent ! Tous vos documents sont prêts.</strong></div>}</div></section>
+        <section className="section"><div className="container"><div className="section-header"><h2>Documents OBLIGATOIRES</h2><p>Ces 6 documents sont requis pour TOUT visa turc.</p></div><div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(400px,1fr))',gap:20}}>{REQ.map((d,i)=><div key={i} className="card card-bordered" style={{borderColor:ck[i]?'var(--success)':'var(--gray-200)',background:ck[i]?'#F0FDF4':'#fff'}}><div style={{display:'flex',gap:16,cursor:'pointer'}} onClick={()=>setOpen(open===i?null:i)}><div style={{fontSize:36}}>{d[0]}</div><div style={{flex:1}}><div style={{display:'flex',justifyContent:'space-between'}}><h4 style={{fontFamily:'Poppins',fontWeight:700,fontSize:16}}>{d[1]}</h4><i className={`fas fa-chevron-${open===i?'up':'down'}`} style={{color:'var(--gray-400)'}}></i></div><p style={{fontSize:13,color:'var(--gray-500)'}}>{d[2]}</p></div></div>{open===i&&<div className="alert alert-warning" style={{marginTop:12,marginBottom:0,fontSize:13}}><i className="fas fa-triangle-exclamation"></i><span>{d[3]}</span></div>}<button onClick={()=>setCk(c=>({...c,[i]:!c[i]}))} className="btn btn-sm w-full" style={{marginTop:16,background:ck[i]?'var(--success)':'var(--gray-100)',color:ck[i]?'#fff':'var(--gray-700)'}}>{ck[i]?'✅ Prêt':'⬜ Marquer prêt'}</button></div>)}</div></div></section>
+        <section className="section bg-gray"><div className="container" style={{maxWidth:640}}><div className="section-header"><h2>🤖 AI Document Checker</h2><p>Uploadez vos documents, notre IA les vérifie.</p></div><DocumentChecker/></div></section>
+      </React.Fragment>;
+    }
+
+    /* ============ PROCESS ============ */
+    const PSTEPS=[['01','fas fa-user-plus','var(--primary)','Créer votre compte','5 minutes','Inscription email + profil visa. Vérification immédiate.'],['02','fas fa-robot','var(--secondary)','AI Visa Matcher','3 minutes','5 questions → recommandation visa avec taux de réussite.'],['03','fas fa-upload','var(--accent)','Upload documents','15–30 min','Checklist interactive + AI Checker automatique.'],['04','fas fa-chart-line','var(--success)','Suivi temps réel','Automatique','Dashboard + notifications + chat consultant & ambassadeur.'],['05','fas fa-passport','var(--primary)','Visa reçu','24h à 4 mois','Téléchargez votre visa + support post-arrivée complet.']];
+    function Process(){
+      return <React.Fragment>
+        <PageHead grad="linear-gradient(135deg,var(--primary),#001a4d)" badge="⚡ Processus" title="Processus visa — 5 étapes simples" sub="De la création de compte au visa reçu, nous guidons chaque étape."/>
+        <section className="section"><div className="container" style={{maxWidth:900}}>{PSTEPS.map((s,i)=><div key={s[0]} className="timeline-step"><div style={{display:'flex',flexDirection:'column',alignItems:'center',flexShrink:0}}><div className="timeline-circle" style={{background:s[2],boxShadow:`0 0 0 8px ${s[2]}20`}}><i className={s[1]}></i></div>{i<PSTEPS.length-1&&<div style={{width:2,flex:1,background:'var(--gray-200)',marginTop:8}}></div>}</div><div style={{flex:1,paddingTop:8}}><div style={{display:'flex',flexWrap:'wrap',alignItems:'center',gap:12,marginBottom:12}}><h2 style={{fontFamily:'Poppins',fontSize:24,color:s[2]}}>Étape {parseInt(s[0])} : {s[3]}</h2><span className="badge badge-info">⏱️ {s[4]}</span></div><p style={{fontSize:16,color:'var(--gray-600)',lineHeight:1.7}}>{s[5]}</p></div></div>)}</div></section>
+        <section className="cta-section"><div className="container" style={{textAlign:'center'}}><h2 style={{color:'#fff',fontSize:'clamp(24px,3.5vw,40px)',marginBottom:16}}>Commence maintenant</h2><p style={{color:'rgba(255,255,255,.85)',fontSize:17,marginBottom:32}}>Étape 1 : Créer votre compte gratuit en 5 minutes.</p><Link to="/portail" className="btn btn-cta btn-lg"><i className="fas fa-user-plus"></i> Créer mon compte</Link></div></section>
+      </React.Fragment>;
+    }
+
+    /* ============ COMMUNITY ============ */
+    const AMBS=[['Ahmed Diallo','🇸🇳','Istanbul','Visa Travail','Ingénieur IT','De Dakar à Istanbul en 3 mois. Posez-moi vos questions !'],['Marie Adjovi','🇧🇯','Ankara','Visa Études','Étudiante médecine','Scholarship complète à Ankara. Je vous guide sur les universités turques.'],['Peter Okonkwo','🇳🇬','Izmir','Tourisme→Travail','Manager hôtellerie','Started with tourism, converted to work visa. Izmir is amazing!']];
+    const THREADS=[['Comment trouver un logement à Istanbul en 2026 ?','Ahmed D.',24,'Logement',true],['Visa travail Nigeria → Turquie : mon expérience','Peter O.',18,'Témoignage',true],['Université Ankara — scholarships 2026/2027','Marie A.',32,'Études',false],['Assurance Bupa en Turquie — avis','Kofi M.',15,'Pratique',false]];
+    function Community(){
+      return <React.Fragment>
+        <PageHead grad="linear-gradient(135deg,#7C3AED,#2563EB)" badge="👥 Community" title="Afriques en Turquie" sub="1,200+ membres actifs. Ambassadeurs africains. Forum, blog, événements."/>
+        <section className="section"><div className="container"><div className="section-header"><div className="hero-badge" style={{background:'rgba(124,58,237,.08)',color:'#7C3AED',border:'1px solid rgba(124,58,237,.2)'}}>Nos ambassadeurs</div><h2>Africains vivant en Turquie</h2><p>Ils partagent leur expérience réelle et répondent à vos questions.</p></div><div className="grid-3">{AMBS.map(a=><div key={a[0]} className="card" style={{textAlign:'center'}}><div className="video-placeholder" style={{marginBottom:20,background:'linear-gradient(135deg,#1a1a2e,#16213e)'}}><div className="video-play-btn"><i className="fas fa-play" style={{marginLeft:3}}></i></div></div><h3 style={{fontFamily:'Poppins',fontWeight:700,fontSize:18}}>{a[0]} {a[1]}</h3><p style={{fontSize:13,color:'var(--gray-500)'}}>{a[4]}</p><div style={{display:'flex',gap:6,justifyContent:'center',margin:'8px 0 16px'}}><span className="badge badge-primary">{a[3]}</span><span className="badge badge-info">📍 {a[2]}</span></div><p style={{fontSize:14,color:'var(--gray-600)',fontStyle:'italic',marginBottom:20}}>"{a[5]}"</p><Link to="/portail" className="btn btn-secondary w-full btn-sm"><i className="fas fa-comments"></i> Chat avec {a[0].split(' ')[0]}</Link></div>)}</div></div></section>
+        <section className="section bg-gray"><div className="container"><div className="section-header"><h2>Forum — Discussions</h2><p>Partagez, posez vos questions, aidez les autres.</p></div><div style={{background:'#fff',borderRadius:16,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,.06)'}}>{THREADS.map((t,i)=><div key={t[0]} style={{display:'flex',alignItems:'flex-start',gap:16,padding:'20px 24px',borderBottom:i<THREADS.length-1?'1px solid var(--gray-100)':'none'}}><div style={{width:44,height:44,borderRadius:10,background:t[4]?'#FEF3C7':'var(--gray-100)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:20}}>{t[4]?'🔥':'💬'}</div><div style={{flex:1}}><h4 style={{fontFamily:'Poppins',fontWeight:700,fontSize:15,marginBottom:6}}>{t[0]}</h4><div style={{display:'flex',gap:16,fontSize:12,color:'var(--gray-400)'}}><span>👤 {t[1]}</span><span>💬 {t[2]} réponses</span><span className="badge badge-info">{t[3]}</span></div></div><Link to="/portail" className="btn btn-sm btn-secondary">Lire →</Link></div>)}</div></div></section>
+        <section className="cta-section"><div className="container" style={{textAlign:'center'}}><h2 style={{color:'#fff',fontSize:'clamp(24px,3.5vw,40px)',marginBottom:16}}>Rejoins notre community</h2><p style={{color:'rgba(255,255,255,.85)',fontSize:17,marginBottom:32}}>1,200+ membres africains qui s'entraident pour réussir en Turquie.</p><Link to="/portail" className="btn btn-cta btn-lg"><i className="fas fa-users"></i> Rejoindre gratuitement</Link></div></section>
+      </React.Fragment>;
+    }
+
+    /* ============ BLOG ============ */
+    const ARTICLES=[['📋','Mises à jour visa','Changements importants visa Turquie — Juin 2026','Nouveaux documents requis, délais révisés et frais actualisés.',true],['❌','Conseils','5 erreurs qui causent le REFUS de visa','Après 1,200+ dossiers, voici les erreurs à éviter absolument.',true],['🎓','Scholarships','Scholarships universités turques 2026/2027','Plus de €5,000 de bourses pour étudiants africains.',false],['🏙️','Vie en Turquie','Vivre à Istanbul en 2026 — Budget mensuel','Loyer, nourriture, transport. Combien pour vivre confortablement ?',false],['💼','Conseils','Trouver un emploi en Turquie — Guide 2026','Secteurs qui recrutent, sites d\'emploi, networking, salaires.',false],['🌟','Témoignages','"De Lagos à Istanbul" — Peter Okonkwo','Visa travail en 2.5 mois, installé à Izmir. Son histoire.',false]];
+    const CATS=['Tout','Mises à jour visa','Conseils','Scholarships','Vie en Turquie','Témoignages'];
+    function Blog(){
+      const [cat,setCat]=useState('Tout');const [sub,setSub]=useState(false);const [email,setEmail]=useState('');
+      const filtered=cat==='Tout'?ARTICLES:ARTICLES.filter(a=>a[1]===cat);
+      return <React.Fragment>
+        <PageHead grad="linear-gradient(135deg,#1F2937,#111827)" badge="📰 Blog" title="Blog Immigration Turquie 2026" sub="Conseils, actualités et témoignages sur l'immigration Afrique → Turquie."/>
+        <section style={{padding:'24px 0',background:'#fff',borderBottom:'1px solid var(--gray-200)'}}><div className="container"><div style={{display:'flex',gap:10,flexWrap:'wrap',justifyContent:'center'}}>{CATS.map(c=><button key={c} onClick={()=>setCat(c)} style={{padding:'8px 20px',borderRadius:20,border:'2px solid',borderColor:cat===c?'var(--primary)':'var(--gray-200)',background:cat===c?'var(--primary)':'#fff',color:cat===c?'#fff':'var(--gray-600)',cursor:'pointer',fontFamily:'Poppins',fontWeight:600,fontSize:13}}>{c}</button>)}</div></div></section>
+        <section className="section"><div className="container"><div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(340px,1fr))',gap:24}}>{filtered.map((a,i)=><article key={i} className="card card-bordered" style={{cursor:'pointer'}}><div style={{background:a[4]?'linear-gradient(135deg,#FEF3C7,#FDE68A)':'linear-gradient(135deg,var(--gray-100),var(--gray-200))',borderRadius:10,padding:32,textAlign:'center',marginBottom:20,fontSize:56,position:'relative'}}>{a[0]}{a[4]&&<div style={{position:'absolute',top:10,right:10}}><span className="badge badge-warning">🔥 Trending</span></div>}</div><span className="badge badge-info">{a[1]}</span><h3 style={{fontFamily:'Poppins',fontWeight:700,fontSize:17,margin:'10px 0',lineHeight:1.4}}>{a[2]}</h3><p style={{fontSize:14,color:'var(--gray-500)',lineHeight:1.6,marginBottom:20}}>{a[3]}</p><button className="btn btn-sm btn-primary">Lire →</button></article>)}</div></div></section>
+        <section style={{padding:'80px 0',background:'linear-gradient(135deg,#F0FDF4,#EFF6FF)'}}><div className="container" style={{maxWidth:600,textAlign:'center'}}><div style={{fontSize:48,marginBottom:16}}>📬</div><h2 style={{fontSize:30,marginBottom:12}}>Restez informé</h2><p style={{color:'var(--gray-500)',fontSize:16,marginBottom:32}}>Recevez les dernières mises à jour visa Turquie par email.</p>{sub?<div className="alert alert-success" style={{justifyContent:'center'}}><i className="fas fa-circle-check"></i><strong>Inscription réussie !</strong></div>:<form onSubmit={e=>{e.preventDefault();if(email)setSub(true)}} style={{display:'flex',gap:12,maxWidth:480,margin:'0 auto'}}><input type="email" className="form-control" placeholder="votre@email.com" value={email} onChange={e=>setEmail(e.target.value)} required style={{flex:1}}/><button type="submit" className="btn btn-primary">S'abonner</button></form>}</div></section>
+      </React.Fragment>;
+    }
+
+    /* ============ CONTACT ============ */
+    const FAQ=[['e-Visa ou Consulat — quel choix ?','Le e-Visa est uniquement pour le tourisme (<30 jours), 100% online, 24h. Pour travail/études/familial, passez par le consulat. Notre AI Visa Matcher vous guide.'],['Délai d\'un visa travail Turquie ?','2 à 3 mois depuis la soumission du dossier complet. Avec WorldGate, nous préparons votre dossier en amont. Taux : 90%.'],['Document manquant = refus ?','Oui. Un dossier incomplet est automatiquement rejeté. Notre AI Document Checker vérifie chaque document avant soumission.'],['Votre taux de réussite ?','95% global (1,200+ dossiers depuis 2022). 95% tourisme/études, 90% travail, 85% familial.'],['Budget total pour immigrer ?','Visa (€80-300) + billets (€700-900) + logement + assurance + vie. Utilisez notre Cost Calculator pour une estimation.'],['Scholarships disponibles ?','Oui ! €5,000+ via 50+ universités partenaires. 95% de nos candidats obtiennent une aide.']];
+    function Contact(){
+      const [open,setOpen]=useState(null);const [sent,setSent]=useState(false);const [loading,setLoading]=useState(false);
+      const submit=async e=>{e.preventDefault();setLoading(true);await new Promise(r=>setTimeout(r,1200));setSent(true);setLoading(false)};
+      return <React.Fragment>
+        <PageHead grad="linear-gradient(135deg,var(--primary),#001a4d)" badge="📞 Contact" title="Contactez WorldGate" sub="Notre équipe répond en moins de 24h. Cotonou, Bénin."/>
+        <section className="section"><div className="container"><div className="two-col" style={{display:'grid',gridTemplateColumns:'1fr 1.5fr',gap:48,alignItems:'start'}}>
+          <div><h2 style={{fontFamily:'Poppins',fontSize:26,marginBottom:24}}>Nos coordonnées</h2>{[['fas fa-map-marker-alt','var(--primary)','Adresse','Cotonou, Littoral, Bénin'],['fas fa-phone','var(--secondary)','Téléphone','+229 XXX XXX XXX'],['fas fa-envelope','var(--accent)','Email','contact@worldgate.com'],['fas fa-clock','var(--success)','Horaires','Lun–Sam 9h–18h']].map(c=><div key={c[2]} style={{display:'flex',gap:16,marginBottom:20}}><div style={{width:48,height:48,background:c[1]+'15',borderRadius:12,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}><i className={c[0]} style={{color:c[1],fontSize:20}}></i></div><div><div style={{fontSize:12,fontWeight:700,color:'var(--gray-400)',textTransform:'uppercase'}}>{c[2]}</div><div style={{fontFamily:'Poppins',fontWeight:700,fontSize:15}}>{c[3]}</div></div></div>)}<a href="https://wa.me/22900000000" target="_blank" className="btn w-full" style={{background:'#25D366',color:'#fff',marginTop:12,gap:10,fontSize:16,padding:14}}><i className="fab fa-whatsapp" style={{fontSize:22}}></i> Contacter via WhatsApp</a></div>
+          <div><div style={{background:'#fff',borderRadius:20,padding:36,boxShadow:'0 10px 40px rgba(0,0,0,.08)',border:'1px solid var(--gray-100)'}}><h2 style={{fontFamily:'Poppins',fontSize:24,marginBottom:8}}>Envoyez-nous un message</h2><p style={{color:'var(--gray-500)',marginBottom:28}}>Réponse garantie sous 24h.</p>{sent?<div style={{textAlign:'center',padding:'48px 0'}}><div style={{fontSize:64,marginBottom:16}}>✅</div><h3 style={{fontFamily:'Poppins',fontSize:22,marginBottom:8}}>Message envoyé !</h3><p style={{color:'var(--gray-500)'}}>Nous vous répondrons dans les 24 heures.</p><button onClick={()=>setSent(false)} className="btn btn-primary" style={{marginTop:20}}>Envoyer un autre</button></div>:<form onSubmit={submit}><div className="form-group"><label className="form-label">Nom complet *</label><input className="form-control" placeholder="Jean Dupont" required/></div><div className="form-group"><label className="form-label">Email *</label><input className="form-control" type="email" placeholder="jean@email.com" required/></div><div className="form-group"><label className="form-label">Message *</label><textarea className="form-control" rows={5} placeholder="Décrivez votre projet..." required></textarea></div><button type="submit" className="btn btn-primary w-full btn-lg" disabled={loading}>{loading?<React.Fragment><i className="fas fa-spinner fa-spin"></i> Envoi...</React.Fragment>:<React.Fragment><i className="fas fa-paper-plane"></i> Envoyer le message</React.Fragment>}</button></form>}</div></div>
+        </div></div></section>
+        <section className="section bg-gray"><div className="container" style={{maxWidth:800}}><div className="section-header"><h2>Questions fréquentes</h2><p>Les réponses aux questions les plus posées.</p></div>{FAQ.map((f,i)=><div key={i} className="accordion-item"><div className={`accordion-header ${open===i?'open':''}`} onClick={()=>setOpen(open===i?null:i)}><span>{f[0]}</span><i className={`fas fa-chevron-${open===i?'up':'down'}`}></i></div><div className={`accordion-body ${open===i?'open':''}`}><p style={{fontSize:15,color:'var(--gray-600)',lineHeight:1.8}}>{f[1]}</p></div></div>)}</div></section>
+      </React.Fragment>;
+    }
+
+    /* ============ PORTAL ============ */
+    const MOCK_DOCS=[['Passeport','done','🛂','10/06/2026'],['Photo','done','📸','10/06/2026'],['Billet avion','missing','✈️',null],['Assurance','done','🛡️','11/06/2026'],['Relevés','pending','🏦',null],['Hébergement','missing','🏨',null]];
+    const SIDEBAR=[['overview','Vue d\'ensemble','fas fa-th-large'],['status','Statut dossier','fas fa-clipboard-list'],['documents','Documents','fas fa-folder'],['messages','Messages','fas fa-comments'],['calculator','Mon budget','fas fa-calculator'],['ai-checker','AI Checker','fas fa-robot'],['profile','Mon profil','fas fa-user-cog']];
+    const STATUS=[['Dossier créé','fas fa-file','done'],['Documents soumis','fas fa-upload','done'],['En traitement','fas fa-cog','active'],['Décision consulat','fas fa-gavel',''],['Visa approuvé','fas fa-passport','']];
+    function AuthForm(){
+      const {login,register}=useAuth();const [mode,setMode]=useState('login');const [f,setF]=useState({email:'',password:'',name:'',nationality:'Bénin'});const [err,setErr]=useState('');const [loading,setLoading]=useState(false);
+      const set=(k,v)=>setF(p=>({...p,[k]:v}));
+      const submit=async e=>{e.preventDefault();setErr('');setLoading(true);await new Promise(r=>setTimeout(r,700));if(mode==='login'){const r=login(f.email,f.password);if(!r.success)setErr(r.error)}else{if(!f.name){setErr('Nom requis');setLoading(false);return}register(f)}setLoading(false)};
+      return <div style={{minHeight:'100vh',background:'linear-gradient(135deg,#FFF5F5,#EFF6FF)',display:'flex',alignItems:'center',justifyContent:'center',padding:'80px 24px 40px'}}><div style={{maxWidth:480,width:'100%'}}>
+        <div style={{textAlign:'center',marginBottom:32}}><div style={{width:60,height:60,background:'linear-gradient(135deg,var(--primary),var(--secondary))',borderRadius:16,display:'flex',alignItems:'center',justifyContent:'center',fontSize:28,margin:'0 auto 16px'}}>🌍</div><h1 style={{fontFamily:'Poppins',fontSize:28}}>WorldGate</h1><p style={{color:'var(--gray-500)'}}>Portail client sécurisé</p></div>
+        <div style={{background:'#fff',borderRadius:20,padding:'36px 40px',boxShadow:'0 20px 60px rgba(0,0,0,.1)'}}>
+          <div style={{display:'flex',background:'var(--gray-100)',borderRadius:10,padding:4,marginBottom:28}}>{['login','register'].map(m=><button key={m} onClick={()=>setMode(m)} style={{flex:1,padding:10,border:'none',borderRadius:8,cursor:'pointer',fontFamily:'Poppins',fontWeight:700,fontSize:14,background:mode===m?'#fff':'transparent',color:mode===m?'var(--primary)':'var(--gray-500)',boxShadow:mode===m?'0 2px 8px rgba(0,0,0,.1)':'none'}}>{m==='login'?'🔑 Connexion':'✨ Créer compte'}</button>)}</div>
+          <form onSubmit={submit}>{mode==='register'&&<div className="form-group"><label className="form-label">Nom complet *</label><input className="form-control" placeholder="Jean Dupont" value={f.name} onChange={e=>set('name',e.target.value)}/></div>}<div className="form-group"><label className="form-label">Email *</label><input className="form-control" type="email" placeholder="vous@email.com" value={f.email} onChange={e=>set('email',e.target.value)} required/></div><div className="form-group"><label className="form-label">Mot de passe *</label><input className="form-control" type="password" placeholder="Minimum 6 caractères" value={f.password} onChange={e=>set('password',e.target.value)} required minLength={6}/></div>{err&&<div className="alert alert-danger"><i className="fas fa-circle-exclamation"></i>{err}</div>}<button type="submit" className="btn btn-primary w-full btn-lg" disabled={loading}>{loading?<React.Fragment><i className="fas fa-spinner fa-spin"></i> Chargement...</React.Fragment>:(mode==='login'?'Se connecter':'Créer mon compte')}</button></form>
+          {mode==='login'&&<div style={{textAlign:'center',marginTop:20}}><p style={{fontSize:13,color:'var(--gray-500)'}}>Demo : <strong>demo@worldgate.com</strong> / <strong>demo123</strong></p></div>}
+        </div>
+      </div></div>;
+    }
+    function Dashboard(){
+      const {user,logout}=useAuth();const [sec,setSec]=useState('overview');const [msgs,setMsgs]=useState([{from:'consultant',name:'Aicha (Consultant)',msg:'Bonjour ! J\'ai bien reçu vos documents. Votre passeport est validé.'},{from:'me',name:'Vous',msg:'Merci ! Quand uploader le billet avion ?'},{from:'consultant',name:'Aicha',msg:'Avant le 30 juin pour respecter les délais du consulat.'}]);const [nm,setNm]=useState('');
+      const done=MOCK_DOCS.filter(d=>d[1]==='done').length;
+      const send=e=>{e.preventDefault();if(!nm.trim())return;setMsgs(m=>[...m,{from:'me',name:'Vous',msg:nm}]);setNm('');setTimeout(()=>setMsgs(m=>[...m,{from:'consultant',name:'Aicha',msg:'Je prends note. Je vous réponds dans les 24h. 😊'}]),1500)};
+      return <div className="dashboard-layout">
+        <aside className="dashboard-sidebar">
+          <div style={{padding:'0 24px 28px',borderBottom:'1px solid rgba(255,255,255,.1)',marginBottom:20}}><div style={{display:'flex',alignItems:'center',gap:10}}><div style={{width:36,height:36,background:'linear-gradient(135deg,var(--primary),var(--secondary))',borderRadius:8,display:'flex',alignItems:'center',justifyContent:'center',fontSize:18}}>🌍</div><div><div style={{fontFamily:'Poppins',fontWeight:800,color:'#fff',fontSize:16}}>WorldGate</div><div style={{fontSize:10,color:'rgba(255,255,255,.4)'}}>Portail client</div></div></div></div>
+          <div style={{padding:'0 24px 16px'}}><div style={{display:'flex',alignItems:'center',gap:10,background:'rgba(255,255,255,.05)',borderRadius:10,padding:12}}><img src={user.photo} style={{width:36,height:36,borderRadius:'50%'}}/><div><div style={{fontWeight:700,color:'#fff',fontSize:13}}>{user.name}</div><div style={{fontSize:11,color:'rgba(255,255,255,.4)'}}>{user.visaType}</div></div></div></div>
+          {SIDEBAR.map(s=><div key={s[0]} className={`sidebar-nav-item ${sec===s[0]?'active':''}`} onClick={()=>setSec(s[0])}><i className={s[2]}></i><span>{s[1]}</span></div>)}
+          <div style={{marginTop:'auto',padding:'24px 24px 0'}}><button onClick={logout} style={{width:'100%',background:'rgba(255,255,255,.05)',border:'1px solid rgba(255,255,255,.1)',borderRadius:8,padding:10,color:'rgba(255,255,255,.6)',cursor:'pointer',display:'flex',alignItems:'center',gap:10,fontFamily:'Poppins',fontWeight:600,fontSize:14}}><i className="fas fa-sign-out-alt"></i> Déconnexion</button></div>
+        </aside>
+        <main className="dashboard-main">
+          <div style={{display:'flex',justifyContent:'space-between',marginBottom:24,paddingBottom:16,borderBottom:'1px solid var(--gray-200)'}}><h2 style={{fontFamily:'Poppins',fontSize:20}}>{SIDEBAR.find(s=>s[0]===sec)[1]}</h2><a href="https://wa.me/22900000000" className="btn btn-sm" style={{background:'#25D366',color:'#fff'}} target="_blank"><i className="fab fa-whatsapp"></i> WhatsApp</a></div>
+          <div className="dashboard-widget">
+            {sec==='overview'&&<div><div style={{background:'linear-gradient(135deg,var(--primary),var(--secondary))',borderRadius:16,padding:28,marginBottom:24,color:'#fff'}}><div style={{display:'flex',alignItems:'center',gap:16,flexWrap:'wrap'}}><img src={user.photo} style={{width:64,height:64,borderRadius:'50%',border:'3px solid rgba(255,255,255,.4)'}}/><div style={{flex:1}}><h2 style={{color:'#fff',fontFamily:'Poppins',fontSize:22,marginBottom:4}}>Bienvenue, {user.name.split(' ')[0]} ! 👋</h2><p style={{color:'rgba(255,255,255,.85)'}}>🌍 {user.nationality} → 🇹🇷 Turquie • {user.visaType}</p></div></div></div><div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:16,marginBottom:24}}>{[['Documents',`${done}/${MOCK_DOCS.length}`,'📄','var(--secondary)'],['Progression',`${Math.round(done/MOCK_DOCS.length*100)}%`,'📊','var(--accent)'],['Délai prévu','2–3 mois','⏱️','var(--success)'],['Réussite','90%','🎯','var(--primary)']].map(k=><div key={k[0]} style={{background:'#fff',border:'1px solid var(--gray-200)',borderRadius:12,padding:20,borderLeft:`4px solid ${k[3]}`}}><div style={{fontSize:28,marginBottom:8}}>{k[2]}</div><div style={{fontFamily:'Poppins',fontWeight:800,fontSize:24,color:k[3]}}>{k[1]}</div><div style={{fontSize:13,color:'var(--gray-500)'}}>{k[0]}</div></div>)}</div><div style={{background:'#fff',border:'1px solid var(--gray-200)',borderRadius:16,padding:24}}><h3 style={{fontFamily:'Poppins',fontWeight:700,marginBottom:16}}>Progression documents</h3><div className="progress-bar" style={{height:10,marginBottom:16}}><div className="progress-fill" style={{width:(done/MOCK_DOCS.length*100)+'%'}}></div></div>{MOCK_DOCS.map((d,i)=><div key={i} className="checklist-item"><span style={{fontSize:20}}>{d[1]==='done'?'✅':d[1]==='pending'?'⏳':'❌'}</span><span style={{flex:1,fontSize:14,fontWeight:600}}>{d[0]}</span>{d[3]&&<span style={{fontSize:12,color:'var(--gray-400)'}}>{d[3]}</span>}</div>)}</div></div>}
+            {sec==='status'&&<div><div className="widget-title"><i className="fas fa-clipboard-list"></i> Statut de votre dossier</div><div style={{background:'linear-gradient(135deg,#FFF5F5,#EFF6FF)',borderRadius:16,padding:28}}><div style={{display:'flex',justifyContent:'space-between',marginBottom:24}}><div><h3 style={{fontFamily:'Poppins',fontSize:20}}>Visa Travail — Turquie</h3><p style={{color:'var(--gray-500)',fontSize:14}}>Dossier N° WG-2026-1247</p></div><span className="badge badge-warning" style={{padding:'8px 16px'}}>⚙️ En traitement</span></div>{STATUS.map((s,i)=><div key={i} style={{display:'flex',gap:16,marginBottom:20,position:'relative'}}>{i<STATUS.length-1&&<div style={{position:'absolute',left:20,top:40,bottom:-20,width:2,background:s[2]==='done'?'var(--success)':'var(--gray-200)'}}></div>}<div style={{width:40,height:40,borderRadius:'50%',background:s[2]==='done'?'var(--success)':s[2]==='active'?'var(--accent)':'var(--gray-100)',color:s[2]?'#fff':'var(--gray-400)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,position:'relative',zIndex:1}}><i className={s[2]==='done'?'fas fa-check':s[1]}></i></div><div style={{paddingTop:8}}><div style={{fontFamily:'Poppins',fontWeight:700,color:s[2]==='done'?'var(--success)':s[2]==='active'?'var(--accent)':'var(--gray-500)'}}>{s[0]}</div><div style={{fontSize:13,color:'var(--gray-400)'}}>{s[2]==='done'?'Complété ✓':s[2]==='active'?'En cours — 2–3 mois':'À venir'}</div></div></div>)}</div><div className="alert alert-info" style={{marginTop:24}}><i className="fas fa-circle-info"></i><span>Décision prévue le <strong>15 août 2026</strong>. Notifié par email + SMS.</span></div></div>}
+            {sec==='documents'&&<div><div className="widget-title"><i className="fas fa-folder"></i> Mes documents</div><div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(200px,1fr))',gap:16}}>{MOCK_DOCS.map((d,i)=><div key={i} style={{border:'2px solid var(--gray-200)',background:d[1]==='done'?'#F0FDF4':d[1]==='missing'?'#FFF5F5':'var(--gray-50)',borderRadius:12,padding:20,textAlign:'center'}}><div style={{fontSize:40,marginBottom:10}}>{d[2]}</div><div style={{fontFamily:'Poppins',fontWeight:700,fontSize:13,marginBottom:4}}>{d[0]}</div>{d[3]?<div style={{fontSize:11,color:'var(--gray-400)',marginBottom:12}}>{d[3]}</div>:<div style={{fontSize:11,color:'var(--danger)',marginBottom:12}}>Non uploadé</div>}<button className="btn btn-sm btn-primary w-full" style={{fontSize:11}}>{d[1]==='done'?'⬇ Télécharger':'⬆ Upload'}</button></div>)}</div></div>}
+            {sec==='messages'&&<div><div className="widget-title"><i className="fas fa-comments"></i> Messages</div><div className="chat-container">{msgs.map((m,i)=><div key={i} className={`chat-msg ${m.from==='me'?'own':''}`}>{m.from!=='me'&&<div style={{width:36,height:36,borderRadius:'50%',background:'var(--primary)',color:'#fff',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>A</div>}<div><div style={{fontSize:11,color:'var(--gray-400)',marginBottom:4}}>{m.name}</div><div className="chat-bubble">{m.msg}</div></div></div>)}</div><form onSubmit={send} style={{display:'flex',gap:10}}><input className="form-control" placeholder="Écrivez votre message..." value={nm} onChange={e=>setNm(e.target.value)} style={{flex:1}}/><button type="submit" className="btn btn-primary"><i className="fas fa-paper-plane"></i></button></form></div>}
+            {sec==='calculator'&&<div><div className="widget-title"><i className="fas fa-calculator"></i> Mon budget estimé</div><CostCalculator compact/></div>}
+            {sec==='ai-checker'&&<div><div className="widget-title"><i className="fas fa-robot"></i> AI Document Checker</div><DocumentChecker/></div>}
+            {sec==='profile'&&<div><div className="widget-title"><i className="fas fa-user-cog"></i> Mon profil</div><div style={{display:'flex',gap:24,alignItems:'flex-start',flexWrap:'wrap'}}><img src={user.photo} style={{width:120,height:120,borderRadius:'50%',border:'4px solid var(--primary)'}}/><div style={{flex:1,minWidth:240}}>{[['Nom complet',user.name,'fas fa-user'],['Email',user.email,'fas fa-envelope'],['Nationalité',user.nationality,'fas fa-flag'],['Type de visa',user.visaType,'fas fa-passport']].map(f=><div key={f[0]} style={{display:'flex',gap:16,padding:'14px 0',borderBottom:'1px solid var(--gray-100)'}}><i className={f[2]} style={{color:'var(--secondary)',width:20,marginTop:3}}></i><div><div style={{fontSize:12,color:'var(--gray-400)'}}>{f[0]}</div><div style={{fontWeight:600}}>{f[1]}</div></div></div>)}<button onClick={logout} className="btn btn-sm" style={{marginTop:20,background:'#FEE2E2',color:'var(--danger)'}}><i className="fas fa-sign-out-alt"></i> Déconnexion</button></div></div></div>}
+          </div>
+        </main>
+      </div>;
+    }
+    function Portal(){const {isAuthenticated}=useAuth();return isAuthenticated?<Dashboard/>:<AuthForm/>;}
+
+    /* ============ APP ============ */
+    function ScrollTop(){const {pathname}=useLocation();useEffect(()=>{window.scrollTo(0,0)},[pathname]);return null;}
+    function Layout({children,footer=true}){return <React.Fragment><Header/><main>{children}</main>{footer&&<Footer/>}<WhatsAppFloat/></React.Fragment>;}
+    function App(){
+      return <AuthProvider><ScrollTop/><Routes>
+        <Route path="/" element={<Layout><Home/></Layout>}/>
+        <Route path="/services" element={<Layout><Services/></Layout>}/>
+        <Route path="/visa" element={<Layout><Visa/></Layout>}/>
+        <Route path="/checklist" element={<Layout><Checklist/></Layout>}/>
+        <Route path="/processus" element={<Layout><Process/></Layout>}/>
+        <Route path="/portail" element={<Layout footer={false}><Portal/></Layout>}/>
+        <Route path="/community" element={<Layout><Community/></Layout>}/>
+        <Route path="/blog" element={<Layout><Blog/></Layout>}/>
+        <Route path="/contact" element={<Layout><Contact/></Layout>}/>
+      </Routes></AuthProvider>;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<HashRouter><App/></HashRouter>);
+  </script>
+</body>
+</html>
