@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon Dossier – World Gate Immigration Turquie</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar">
+    <a href="index.html" class="logo-wrap">
+      <span class="logo-top">WORLD GATE</span>
+      <span class="logo-bottom">IMMIGRATION TURQUIE</span>
+    </a>
+    <nav>
+      <a class="sidebar-link active" data-tab="overview">📊 Vue d'ensemble</a>
+      <a class="sidebar-link" data-tab="dossier">📂 Mon Dossier</a>
+      <a class="sidebar-link" data-tab="documents">📄 Documents</a>
+      <a class="sidebar-link" data-tab="messages">💬 Messages</a>
+      <a class="sidebar-link" href="https://calendly.com/worldgateeducation72" target="_blank">📅 Rendez-vous</a>
+      <a class="sidebar-link" href="https://wa.me/905074672829" target="_blank">📱 WhatsApp</a>
+      <a class="sidebar-link" href="index.html">🏠 Retour Accueil</a>
+    </nav>
+    <div style="padding:24px;margin-top:auto;border-top:1px solid rgba(255,255,255,.1);margin-top:40px">
+      <p style="font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.6">Besoin d'aide ?<br><a href="tel:+905074672829" style="color:var(--orange)">+90 507 467 2829</a></p>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dash-main">
+    <div class="demo-banner">⚠️ MODE DÉMONSTRATION — Connectez-vous pour accéder à votre vrai dossier. <a href="contact.html" style="color:#fff;font-weight:800">Créer un compte →</a></div>
+
+    <!-- TAB: OVERVIEW -->
+    <div id="tab-overview" class="dash-tab active">
+      <div class="dash-header">
+        <div>
+          <h2>Bonjour, Amadou 👋</h2>
+          <p style="color:var(--gray);font-size:.88rem">Visa Étudiant — Dossier en cours de traitement</p>
+        </div>
+        <div style="display:flex;gap:10px">
+          <a href="https://calendly.com/worldgateeducation72" target="_blank" class="btn btn-primary" style="font-size:.85rem;padding:10px 18px">📅 Rendez-vous</a>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="dash-cards">
+        <div class="dash-card">
+          <div class="dc-icon">📄</div>
+          <div class="dc-val">8/10</div>
+          <div class="dc-lbl">Documents fournis</div>
+        </div>
+        <div class="dash-card">
+          <div class="dc-icon">⏱️</div>
+          <div class="dc-val">12j</div>
+          <div class="dc-lbl">Jours restants</div>
+        </div>
+        <div class="dash-card">
+          <div class="dc-icon">✅</div>
+          <div class="dc-val">75%</div>
+          <div class="dc-lbl">Dossier complet</div>
+        </div>
+        <div class="dash-card">
+          <div class="dc-icon">🎓</div>
+          <div class="dc-val">Étudiant</div>
+          <div class="dc-lbl">Type de visa</div>
+        </div>
+      </div>
+
+      <!-- PROGRESS -->
+      <div class="progress-section">
+        <h4>Progression de votre dossier</h4>
+        <div class="prog-bar-wrap">
+          <div class="prog-bar" id="progressBar" style="width:0%"></div>
+        </div>
+        <p class="prog-label" id="progressLabel">Calcul en cours...</p>
+
+        <div class="checklist">
+          <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Passeport valide (min. 6 mois)</label></div>
+          <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Photo d'identité biométrique</label></div>
+          <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Lettre d'admission universitaire</label></div>
+          <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Relevé bancaire (3 derniers mois)</label></div>
+          <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Preuve de logement en Turquie</label></div>
+          <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Assurance santé internationale</label></div>
+          <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Acte de naissance traduit</label></div>
+          <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Diplômes et relevés de notes</label></div>
+          <div class="check-item"><input type="checkbox" id="c8"><label for="c8">Formulaire de demande de visa</label></div>
+          <div class="check-item"><input type="checkbox" id="c9"><label for="c9">Paiement des frais de visa</label></div>
+        </div>
+      </div>
+
+      <!-- NOTIFICATIONS -->
+      <div class="progress-section">
+        <h4 style="margin-bottom:16px">🔔 Notifications récentes</h4>
+        <div class="notif-list">
+          <div class="notif-item ok">
+            <span style="font-size:1.2rem">✅</span>
+            <div class="notif-body">
+              <strong>Documents reçus</strong>
+              Votre passeport et photo biométrique ont été validés par notre équipe.
+              <div class="notif-time">Il y a 2 heures</div>
+            </div>
+          </div>
+          <div class="notif-item warn">
+            <span style="font-size:1.2rem">⚠️</span>
+            <div class="notif-body">
+              <strong>Action requise</strong>
+              Votre assurance santé expire dans 30 jours. Veuillez la renouveler avant le dépôt.
+              <div class="notif-time">Il y a 5 heures</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <span style="font-size:1.2rem">📋</span>
+            <div class="notif-body">
+              <strong>Dossier en instruction</strong>
+              Votre conseiller Hermann a pris en charge votre dossier visa étudiant.
+              <div class="notif-time">Hier à 14h30</div>
+            </div>
+          </div>
+          <div class="notif-item ok">
+            <span style="font-size:1.2rem">📅</span>
+            <div class="notif-body">
+              <strong>Rendez-vous confirmé</strong>
+              Consultation téléphonique vendredi 21/06 à 10h00 avec votre conseiller.
+              <div class="notif-time">Il y a 2 jours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUICK ACTIONS -->
+      <div class="progress-section">
+        <h4 style="margin-bottom:16px">⚡ Actions rapides</h4>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="https://wa.me/905074672829" target="_blank" class="btn btn-primary" style="font-size:.85rem;padding:10px 18px">💬 WhatsApp Support</a>
+          <a href="https://calendly.com/worldgateeducation72" target="_blank" class="btn btn-blue" style="font-size:.85rem;padding:10px 18px">📅 Prendre RDV</a>
+          <a href="mailto:worldgateeducation72@gmail.com" class="btn btn-secondary" style="font-size:.85rem;padding:10px 18px;color:var(--dark)">✉️ Envoyer Email</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: DOSSIER -->
+    <div id="tab-dossier" class="dash-tab">
+      <div class="dash-header"><h2>📂 Mon Dossier Visa</h2></div>
+      <div class="progress-section">
+        <h4>Informations du Dossier</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+          <div style="background:var(--light);padding:16px;border-radius:8px"><p style="font-size:.78rem;color:var(--gray)">Numéro de dossier</p><p style="font-weight:800;color:var(--blue)">#WG-2025-0847</p></div>
+          <div style="background:var(--light);padding:16px;border-radius:8px"><p style="font-size:.78rem;color:var(--gray)">Type de visa</p><p style="font-weight:800">Visa Étudiant 🎓</p></div>
+          <div style="background:var(--light);padding:16px;border-radius:8px"><p style="font-size:.78rem;color:var(--gray)">Date de dépôt</p><p style="font-weight:800">10 juin 2025</p></div>
+          <div style="background:var(--light);padding:16px;border-radius:8px"><p style="font-size:.78rem;color:var(--gray)">Statut</p><p style="font-weight:800;color:var(--orange)">🔄 En traitement</p></div>
+          <div style="background:var(--light);padding:16px;border-radius:8px"><p style="font-size:.78rem;color:var(--gray)">Conseiller</p><p style="font-weight:800">Hermann W.</p></div>
+          <div style="background:var(--light);padding:16px;border-radius:8px"><p style="font-size:.78rem;color:var(--gray)">Décision prévue</p><p style="font-weight:800;color:#10B981">30 juin 2025</p></div>
+        </div>
+      </div>
+      <div class="progress-section" style="margin-top:20px">
+        <h4>Étapes du traitement</h4>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
+          <div style="display:flex;gap:14px;align-items:center"><div style="width:32px;height:32px;background:#10B981;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;flex-shrink:0">✓</div><div><p style="font-weight:700;font-size:.9rem">Réception du dossier</p><p style="font-size:.8rem;color:var(--gray)">Complété le 10/06/2025</p></div></div>
+          <div style="display:flex;gap:14px;align-items:center"><div style="width:32px;height:32px;background:#10B981;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;flex-shrink:0">✓</div><div><p style="font-weight:700;font-size:.9rem">Vérification des documents</p><p style="font-size:.8rem;color:var(--gray)">Complété le 12/06/2025</p></div></div>
+          <div style="display:flex;gap:14px;align-items:center"><div style="width:32px;height:32px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;flex-shrink:0">→</div><div><p style="font-weight:700;font-size:.9rem">Soumission à l'ambassade</p><p style="font-size:.8rem;color:var(--gray)">En cours — prévu 18/06/2025</p></div></div>
+          <div style="display:flex;gap:14px;align-items:center"><div style="width:32px;height:32px;background:var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:.8rem;flex-shrink:0">4</div><div><p style="font-weight:700;font-size:.9rem;color:var(--gray)">Instruction consulaire</p><p style="font-size:.8rem;color:var(--gray)">À venir</p></div></div>
+          <div style="display:flex;gap:14px;align-items:center"><div style="width:32px;height:32px;background:var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:.8rem;flex-shrink:0">5</div><div><p style="font-weight:700;font-size:.9rem;color:var(--gray)">Délivrance du visa</p><p style="font-size:.8rem;color:var(--gray)">À venir — estimé 30/06/2025</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: DOCUMENTS -->
+    <div id="tab-documents" class="dash-tab">
+      <div class="dash-header"><h2>📄 Mes Documents</h2></div>
+      <div class="progress-section">
+        <h4>Documents soumis</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--light);border-radius:8px"><div><p style="font-weight:700;font-size:.9rem">Passeport</p><p style="font-size:.78rem;color:var(--gray)">Expire le 15/03/2029</p></div><span style="background:#D1FAE5;color:#065F46;padding:4px 10px;border-radius:50px;font-size:.78rem;font-weight:700">✓ Validé</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--light);border-radius:8px"><div><p style="font-weight:700;font-size:.9rem">Photo biométrique</p><p style="font-size:.78rem;color:var(--gray)">Format ICAO conforme</p></div><span style="background:#D1FAE5;color:#065F46;padding:4px 10px;border-radius:50px;font-size:.78rem;font-weight:700">✓ Validé</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--light);border-radius:8px"><div><p style="font-weight:700;font-size:.9rem">Lettre d'admission</p><p style="font-size:.78rem;color:var(--gray)">Université de Marmara</p></div><span style="background:#D1FAE5;color:#065F46;padding:4px 10px;border-radius:50px;font-size:.78rem;font-weight:700">✓ Validé</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--light);border-radius:8px"><div><p style="font-weight:700;font-size:.9rem">Relevé bancaire</p><p style="font-size:.78rem;color:var(--gray)">3 derniers mois</p></div><span style="background:#FEF3C7;color:#92400E;padding:4px 10px;border-radius:50px;font-size:.78rem;font-weight:700">⏳ En vérification</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--light);border-radius:8px"><div><p style="font-weight:700;font-size:.9rem">Assurance santé</p><p style="font-size:.78rem;color:var(--gray)">Expire bientôt !</p></div><span style="background:#FEE2E2;color:#991B1B;padding:4px 10px;border-radius:50px;font-size:.78rem;font-weight:700">⚠️ À renouveler</span></div>
+        </div>
+        <a href="https://wa.me/905074672829" target="_blank" class="btn btn-primary" style="margin-top:20px">📎 Envoyer des documents via WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- TAB: MESSAGES -->
+    <div id="tab-messages" class="dash-tab">
+      <div class="dash-header"><h2>💬 Messages</h2></div>
+      <div class="progress-section">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="background:var(--light);border-radius:10px;padding:16px"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><strong style="font-size:.9rem">Hermann W. (Conseiller)</strong><span style="font-size:.75rem;color:var(--gray)">Aujourd'hui 09:15</span></div><p style="font-size:.88rem;color:var(--gray)">Bonjour Amadou ! Votre dossier avance bien. Il me manque juste la mise à jour de votre assurance santé. Pouvez-vous nous envoyer le nouveau certificat via WhatsApp ?</p></div>
+          <div style="background:#EFF6FF;border-radius:10px;padding:16px;margin-left:40px"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><strong style="font-size:.9rem">Moi</strong><span style="font-size:.75rem;color:var(--gray)">Hier 18:42</span></div><p style="font-size:.88rem;color:var(--gray)">Bonjour Hermann, j'ai envoyé tous les documents demandés. Pouvez-vous confirmer leur réception ?</p></div>
+          <div style="background:var(--light);border-radius:10px;padding:16px"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><strong style="font-size:.9rem">Hermann W. (Conseiller)</strong><span style="font-size:.75rem;color:var(--gray)">Hier 14:30</span></div><p style="font-size:.88rem;color:var(--gray)">Parfait ! J'ai bien reçu votre passeport, photo et lettre d'admission. Je procède à la vérification aujourd'hui. Vous aurez une réponse sous 24h.</p></div>
+        </div>
+        <div style="margin-top:20px;display:flex;gap:10px">
+          <a href="https://wa.me/905074672829" target="_blank" class="btn btn-primary" style="flex:1;justify-content:center">💬 Continuer sur WhatsApp</a>
+          <a href="mailto:worldgateeducation72@gmail.com" class="btn btn-secondary" style="flex:1;justify-content:center;color:var(--dark)">✉️ Envoyer Email</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<a href="https://wa.me/905074672829" class="wa-float" target="_blank">💬</a>
+<script src="main.js"></script>
+</body>
+</html>

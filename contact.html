@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact – World Gate Immigration Turquie</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-wrap">
+      <span class="logo-top">WORLD GATE</span>
+      <span class="logo-bottom">IMMIGRATION TURQUIE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="matcher.html">Visa Matcher IA</a></li>
+      <li><a href="about.html">À Propos</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="dashboard.html" class="nav-cta">Mon Dossier</a></li>
+    </ul>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Contactez World Gate</h1>
+  <p>Nous sommes disponibles 7j/7 pour répondre à vos questions et démarrer votre dossier</p>
+</div>
+
+<!-- CONTACT SECTION -->
+<section>
+  <div class="section-inner">
+    <div class="contact-grid">
+      <!-- FORM -->
+      <div>
+        <div class="section-label">Formulaire de Contact</div>
+        <h2 class="section-title" style="margin-bottom:28px">Envoyez-nous un <span>Message</span></h2>
+        <form class="contact-form" onsubmit="handleForm(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="form-group">
+              <label for="prenom">Prénom *</label>
+              <input type="text" id="prenom" placeholder="Amadou" required>
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom *</label>
+              <input type="text" id="nom" placeholder="Diallo" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" placeholder="amadou@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">WhatsApp / Téléphone</label>
+            <input type="tel" id="phone" placeholder="+221 XX XXX XX XX">
+          </div>
+          <div class="form-group">
+            <label for="pays">Pays de résidence</label>
+            <select id="pays">
+              <option value="">-- Sélectionnez --</option>
+              <option>Sénégal</option><option>Côte d'Ivoire</option><option>Cameroun</option>
+              <option>Mali</option><option>Guinée</option><option>Maroc</option>
+              <option>Burkina Faso</option><option>Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="service">Type de visa souhaité</label>
+            <select id="service">
+              <option value="">-- Sélectionnez --</option>
+              <option>Visa Touristique</option>
+              <option>Visa de Travail</option>
+              <option>Visa Étudiant</option>
+              <option>Regroupement Familial</option>
+              <option>Autre / Je ne sais pas encore</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Votre message *</label>
+            <textarea id="message" placeholder="Décrivez brièvement votre situation et votre projet en Turquie..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:16px">Envoyer Ma Demande ✉️</button>
+          <p style="font-size:.78rem;color:var(--gray);text-align:center">Réponse garantie sous 24h ouvrées. Vos données sont protégées.</p>
+          <div id="formSuccess" style="display:none;background:#D1FAE5;border-radius:8px;padding:16px;color:#065F46;font-weight:700;text-align:center">✅ Message envoyé ! Nous vous répondons sous 24h.</div>
+        </form>
+      </div>
+
+      <!-- INFO -->
+      <div class="contact-info">
+        <div class="info-card">
+          <h4>📱 WhatsApp & Téléphone</h4>
+          <p>Disponible 7j/7 de 8h à 22h (heure de Paris)</p>
+          <a href="https://wa.me/905074672829">+90 507 467 2829</a>
+          <br><br>
+          <a href="https://wa.me/905074672829" class="btn btn-primary" style="font-size:.88rem;padding:10px 18px">💬 Ouvrir WhatsApp</a>
+        </div>
+
+        <div class="info-card">
+          <h4>✉️ Email</h4>
+          <p>Pour les demandes et envoi de documents</p>
+          <a href="mailto:worldgateeducation72@gmail.com">worldgateeducation72@gmail.com</a>
+        </div>
+
+        <div class="info-card" style="border-left-color:var(--orange)">
+          <h4>📅 Calendly – Prise de RDV</h4>
+          <p>Réservez votre consultation gratuite de 30 minutes avec un expert.</p>
+          <a href="https://calendly.com/worldgateeducation72" target="_blank" class="btn btn-orange" style="font-size:.88rem;padding:10px 18px;margin-top:10px;display:inline-flex">📅 Réserver une Consultation</a>
+        </div>
+
+        <div class="info-card" style="border-left-color:var(--red)">
+          <h4>🇹🇷 Siège Principal – Istanbul</h4>
+          <p>Istanbul, Turquie</p>
+          <p>Nous intervenons dans toute la Turquie</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <a href="#" class="social-btn social-fb" style="width:34px;height:34px;font-size:.9rem">f</a>
+            <a href="#" class="social-btn social-ig" style="width:34px;height:34px;font-size:.9rem">📷</a>
+            <a href="#" class="social-btn social-tk" style="width:34px;height:34px;font-size:.9rem">♪</a>
+            <a href="#" class="social-btn social-li" style="width:34px;height:34px;font-size:.9rem">in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUREAUX AFRIQUE -->
+<section style="background:var(--light)">
+  <div class="section-inner">
+    <div class="section-label">Représentations</div>
+    <h2 class="section-title">Nos Partenaires <span>Locaux</span></h2>
+    <p class="section-sub">Des correspondants de confiance dans les principales villes d'Afrique francophone pour vous accompagner localement.</p>
+    <div class="bureaux-grid">
+      <div class="bureau-card">
+        <div class="bureau-flag">🇸🇳</div>
+        <h4>Sénégal</h4>
+        <p>Dakar</p>
+        <p style="margin-top:8px"><a href="https://wa.me/905074672829" style="color:var(--blue);font-weight:600;font-size:.82rem">Contacter →</a></p>
+      </div>
+      <div class="bureau-card">
+        <div class="bureau-flag">🇨🇮</div>
+        <h4>Côte d'Ivoire</h4>
+        <p>Abidjan</p>
+        <p style="margin-top:8px"><a href="https://wa.me/905074672829" style="color:var(--blue);font-weight:600;font-size:.82rem">Contacter →</a></p>
+      </div>
+      <div class="bureau-card">
+        <div class="bureau-flag">🇨🇲</div>
+        <h4>Cameroun</h4>
+        <p>Douala & Yaoundé</p>
+        <p style="margin-top:8px"><a href="https://wa.me/905074672829" style="color:var(--blue);font-weight:600;font-size:.82rem">Contacter →</a></p>
+      </div>
+      <div class="bureau-card">
+        <div class="bureau-flag">🇲🇦</div>
+        <h4>Maroc</h4>
+        <p>Casablanca & Rabat</p>
+        <p style="margin-top:8px"><a href="https://wa.me/905074672829" style="color:var(--blue);font-weight:600;font-size:.82rem">Contacter →</a></p>
+      </div>
+      <div class="bureau-card">
+        <div class="bureau-flag">🇬🇳</div>
+        <h4>Guinée</h4>
+        <p>Conakry</p>
+        <p style="margin-top:8px"><a href="https://wa.me/905074672829" style="color:var(--blue);font-weight:600;font-size:.82rem">Contacter →</a></p>
+      </div>
+      <div class="bureau-card">
+        <div class="bureau-flag">🇲🇱</div>
+        <h4>Mali</h4>
+        <p>Bamako</p>
+        <p style="margin-top:8px"><a href="https://wa.me/905074672829" style="color:var(--blue);font-weight:600;font-size:.82rem">Contacter →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <h2>Une Question ? On Répond en 2 Minutes !</h2>
+  <p>Notre équipe WhatsApp est disponible maintenant pour vous aider.</p>
+  <a href="https://wa.me/905074672829" target="_blank" class="btn" style="background:#25D366;color:#fff;font-size:1rem;padding:14px 32px">💬 Écrire sur WhatsApp</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;justify-content:center;flex-direction:column;text-align:center;gap:12px">
+      <a href="index.html" class="logo-wrap"><span class="logo-top">WORLD GATE</span><span class="logo-bottom">IMMIGRATION TURQUIE</span></a>
+      <p style="color:rgba(255,255,255,.5);font-size:.82rem">© 2025 World Gate Immigration Turquie — <a href="tel:+905074672829" style="color:var(--orange)">+90 507 467 2829</a></p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/905074672829" class="wa-float" target="_blank">💬</a>
+<script src="main.js"></script>
+<script>
+function handleForm(e) {
+  e.preventDefault();
+  document.getElementById('formSuccess').style.display = 'block';
+  e.target.reset();
+}
+</script>
+</body>
+</html>

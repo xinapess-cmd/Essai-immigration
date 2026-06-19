@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visa Matcher IA – World Gate Immigration Turquie</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-wrap">
+      <span class="logo-top">WORLD GATE</span>
+      <span class="logo-bottom">IMMIGRATION TURQUIE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="matcher.html" class="active">Visa Matcher IA</a></li>
+      <li><a href="about.html">À Propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="dashboard.html" class="nav-cta">Mon Dossier</a></li>
+    </ul>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>🤖 Visa Matcher IA</h1>
+  <p>5 questions pour identifier votre visa idéal avec un taux de correspondance personnalisé</p>
+</div>
+
+<section>
+  <div class="section-inner">
+    <div class="ai-tools-grid">
+      <!-- MATCHER -->
+      <div class="ai-card">
+        <div class="ai-badge">🤖 IA Powered</div>
+        <h3>Quel Visa Me Correspond ?</h3>
+        <p style="color:var(--gray);margin-bottom:24px;font-size:.9rem">Notre algorithme analyse votre profil pour vous recommander le visa le plus adapté.</p>
+
+        <div class="step-indicator">
+          <div class="step-dot active">1</div>
+          <div class="step-line"></div>
+          <div class="step-dot">2</div>
+          <div class="step-line"></div>
+          <div class="step-dot">3</div>
+          <div class="step-line"></div>
+          <div class="step-dot">4</div>
+          <div class="step-line"></div>
+          <div class="step-dot">5</div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="matcher-step active">
+          <h4>🌍 Quelle est votre nationalité ?</h4>
+          <select id="natSelect" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:.95rem;font-family:var(--font);background:var(--light)">
+            <option value="">-- Sélectionnez votre pays --</option>
+            <option>Sénégal</option><option>Côte d'Ivoire</option><option>Cameroun</option>
+            <option>Mali</option><option>Guinée</option><option>Burkina Faso</option>
+            <option>Bénin</option><option>Togo</option><option>Niger</option>
+            <option>République Démocratique du Congo</option><option>Congo-Brazzaville</option>
+            <option>Gabon</option><option>Maroc</option><option>Tunisie</option>
+            <option>Algérie</option><option>Mauritanie</option><option>Madagascar</option>
+            <option>Autre pays africain</option>
+          </select>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="matcher-step">
+          <h4>🎯 Quel est votre objectif principal en Turquie ?</h4>
+          <div class="options-row">
+            <div class="option-card" data-value="tourisme" onclick="selectOption(this,2)">🌍 Tourisme & Vacances</div>
+            <div class="option-card" data-value="travail" onclick="selectOption(this,2)">💼 Travail & Carrière</div>
+            <div class="option-card" data-value="etudes" onclick="selectOption(this,2)">🎓 Études & Formation</div>
+            <div class="option-card" data-value="famille" onclick="selectOption(this,2)">❤️ Rejoindre Ma Famille</div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="matcher-step">
+          <h4>📅 Quelle durée prévoyez-vous ?</h4>
+          <div class="options-row">
+            <div class="option-card" data-value="court" onclick="selectOption(this,3)">⚡ Moins de 3 mois</div>
+            <div class="option-card" data-value="moyen" onclick="selectOption(this,3)">📆 3 à 12 mois</div>
+            <div class="option-card" data-value="long" onclick="selectOption(this,3)">🏠 Plus d'un an</div>
+            <div class="option-card" data-value="indefini" onclick="selectOption(this,3)">♾️ Indéfini / Installation</div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="matcher-step">
+          <h4>💰 Quel est votre budget approximatif ?</h4>
+          <div class="options-row">
+            <div class="option-card" data-value="moins500" onclick="selectOption(this,4)">Moins de 500 €</div>
+            <div class="option-card" data-value="500a1500" onclick="selectOption(this,4)">500 – 1 500 €</div>
+            <div class="option-card" data-value="1500a3000" onclick="selectOption(this,4)">1 500 – 3 000 €</div>
+            <div class="option-card" data-value="plus3000" onclick="selectOption(this,4)">Plus de 3 000 €</div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="matcher-step">
+          <h4>📄 Avez-vous déjà été refusé un visa ?</h4>
+          <div class="options-row">
+            <div class="option-card" data-value="non" onclick="selectOption(this,5)">✅ Non, première demande</div>
+            <div class="option-card" data-value="oui_autre" onclick="selectOption(this,5)">⚠️ Refus visa autre pays</div>
+            <div class="option-card" data-value="oui_turquie" onclick="selectOption(this,5)">🇹🇷 Refus visa Turquie</div>
+            <div class="option-card" data-value="oui_multiple" onclick="selectOption(this,5)">❌ Refus multiples</div>
+          </div>
+        </div>
+
+        <div class="matcher-nav">
+          <button class="btn btn-secondary" onclick="prevStep()" style="color:var(--dark)">← Précédent</button>
+          <button class="btn btn-primary" onclick="nextStep()">Suivant →</button>
+        </div>
+
+        <!-- RESULT -->
+        <div id="matcherResult" class="matcher-result">
+          <div class="result-card">
+            <div class="result-icon" id="res-icon">🌍</div>
+            <h3 id="res-visa">Visa Recommandé</h3>
+            <div class="result-row"><span>Taux de correspondance</span><span id="res-taux">—</span></div>
+            <div class="result-row"><span>Budget estimé</span><span id="res-budget">—</span></div>
+            <div class="result-row"><span>Délai moyen</span><span id="res-delai">—</span></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+            <a href="https://calendly.com/worldgateeducation72" target="_blank" class="btn btn-primary" style="flex:1;justify-content:center">📅 Consulter un Expert</a>
+            <button class="btn btn-secondary" onclick="resetMatcher()" style="color:var(--dark)">🔄 Recommencer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CALCULATEUR -->
+      <div class="ai-card" id="calculateur">
+        <div class="ai-badge">💰 Estimation</div>
+        <h3>Calculateur de Budget</h3>
+        <p style="color:var(--gray);margin-bottom:24px;font-size:.9rem">Obtenez une estimation du coût total de votre démarche visa Turquie.</p>
+        <div class="calc-form">
+          <div>
+            <label style="font-weight:600;font-size:.9rem;display:block;margin-bottom:6px">Type de visa</label>
+            <select id="calcVisa">
+              <option value="tourisme">Visa Touristique</option>
+              <option value="travail">Visa de Travail</option>
+              <option value="etudes">Visa Étudiant</option>
+              <option value="famille">Regroupement Familial</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-weight:600;font-size:.9rem;display:block;margin-bottom:6px">Durée souhaitée</label>
+            <select id="calcDuree">
+              <option value="1mois">Moins d'1 mois (urgence)</option>
+              <option value="3mois">3 mois</option>
+              <option value="6mois">6 mois</option>
+              <option value="1an">1 an ou plus</option>
+            </select>
+          </div>
+          <button class="btn btn-blue" onclick="calcBudget()" style="width:100%;justify-content:center">Calculer Mon Budget 💰</button>
+        </div>
+        <div id="calcResult" class="calc-result"></div>
+
+        <div style="background:var(--light);border-radius:10px;padding:20px;margin-top:20px">
+          <h4 style="font-weight:800;margin-bottom:12px">📋 Ce qui est inclus</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+            <li style="font-size:.88rem;color:var(--gray)">✅ Vérification complète du dossier</li>
+            <li style="font-size:.88rem;color:var(--gray)">✅ Rédaction de la lettre de motivation</li>
+            <li style="font-size:.88rem;color:var(--gray)">✅ Soumission à l'ambassade</li>
+            <li style="font-size:.88rem;color:var(--gray)">✅ Suivi en temps réel</li>
+            <li style="font-size:.88rem;color:var(--gray)">✅ Support WhatsApp dédié</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:20px;text-align:center">
+          <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">Demander un Devis Personnalisé</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <h2>Un Expert Vous Rappelle Gratuitement</h2>
+  <p>Laissez-nous vos coordonnées et un conseiller World Gate vous contacte sous 2h.</p>
+  <a href="https://calendly.com/worldgateeducation72" target="_blank" class="btn btn-secondary">📅 Planifier un Appel</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <a href="index.html" class="logo-wrap"><span class="logo-top">WORLD GATE</span><span class="logo-bottom">IMMIGRATION TURQUIE</span></a>
+      <p style="color:rgba(255,255,255,.5);font-size:.82rem">© 2025 World Gate Immigration Turquie — <a href="tel:+905074672829" style="color:var(--orange)">+90 507 467 2829</a></p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/905074672829" class="wa-float" target="_blank">💬</a>
+<script src="main.js"></script>
+</body>
+</html>
